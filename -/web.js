@@ -5834,7 +5834,7 @@ var $;
                 };
             }
             object_rows() {
-                return $.$mol_range2(index => `${index}`, () => 100).map(id => this.Object_row(id));
+                return $.$mol_range2(index => index, () => 100).map(id => this.Object_row(id.toString()));
             }
             object_row_expanded(id, next) {
                 return next ?? false;
