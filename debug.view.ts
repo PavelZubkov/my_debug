@@ -4,7 +4,7 @@ namespace $.$$ {
 		
 		@ $mol_mem_key
 		object( id : string ) {
-			$mol_mem_persist()
+			// $mol_mem_persist()
 			return {
 				id: id,
 				title: $mol_stub_select_random([ 'Ivanhoe' , 'Bewicke', 'Cliff', 'Kingsland', 'Hart' ])
@@ -17,8 +17,19 @@ namespace $.$$ {
 		}
 		
 		@ $mol_mem_key
+		place( id : string ) {
+			// $mol_mem_persist()
+			return {
+				id: id,
+				title: Number.parseInt( $mol_stub_code( $mol_stub_select_random( [ 1 , 1 , 1, 2 ] ) ) , 16 ).toString(), 
+				meters: new Array( $mol_stub_select_random( [ 1 , 2 , 3 ] ) ).fill( 0 ).map( () => $mol_guid() )
+			}
+		}
+		
+		
+		@ $mol_mem_key
 		meter( id : string ) {
-			$mol_mem_persist()
+			// $mol_mem_persist()
 			return {
 				id: id,
 				title: id,
@@ -28,7 +39,7 @@ namespace $.$$ {
 
 		@ $mol_mem
 		object_rows() {
-			$mol_mem_persist()
+			// $mol_mem_persist()
 			return $mol_range2<string>( index => `${index}` , () => 100 ).map( id => this.Object_row( id ) )
 		}
 
@@ -42,7 +53,15 @@ namespace $.$$ {
 		}
 		
 		object_row_content( id : string ) {
-			return this.object( id ).places.map( id => this.Meter_row( id ) )
+			return this.object( id ).places.map( id => this.Place_row( id ) )
+		}
+
+		place_row_title( id : string ) {
+			return this.place( id ).title
+		}
+		
+		place_row_content( id : string ) {
+			return this.place( id ).meters.map( id => this.Meter_row( id ) )
 		}
 		
 		meter_link( id : string ) {

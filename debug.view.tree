@@ -1,5 +1,5 @@
 $my_debug $mol_page
-	title @ \Tree
+	title @ \Object tree
 	body /
 		<= Tree_list $mol_list
 			rows <= object_rows /
@@ -8,6 +8,13 @@ $my_debug $mol_page
 		expanded?val <=> object_row_expanded!id?val false
 		Content <= Object_row_content!id $mol_list
 			rows <= object_row_content!id /
+	-
+	Place_row!id $mol_expander
+		label / <= Place_row_title!id $mol_paragraph sub / <= place_row_title!id \Place
+		expanded?val <=> place_row_expanded!id?val false
+		Content <= Place_row_content!id $mol_list
+			rows <= place_row_content!id /
+	-
 	Meter_icon_water_hot $mol_icon_water
 	Meter_icon_water_cold $mol_icon_water
 	Meter_icon_energy $mol_icon_flash

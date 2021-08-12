@@ -4840,6 +4840,15 @@ var $;
             obj.Content = () => this.Object_row_content(id);
             return obj;
         }
+        Place_row(id) {
+            const obj = new this.$.$mol_expander();
+            obj.label = () => [
+                this.Place_row_title(id)
+            ];
+            obj.expanded = (val) => this.place_row_expanded(id, val);
+            obj.Content = () => this.Place_row_content(id);
+            return obj;
+        }
         Meter_icon_water_hot() {
             const obj = new this.$.$mol_icon_water();
             return obj;
@@ -4894,6 +4903,29 @@ var $;
             obj.rows = () => this.object_row_content(id);
             return obj;
         }
+        place_row_title(id) {
+            return "Place";
+        }
+        Place_row_title(id) {
+            const obj = new this.$.$mol_paragraph();
+            obj.sub = () => [
+                this.place_row_title(id)
+            ];
+            return obj;
+        }
+        place_row_expanded(id, val) {
+            if (val !== undefined)
+                return val;
+            return false;
+        }
+        place_row_content(id) {
+            return [];
+        }
+        Place_row_content(id) {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => this.place_row_content(id);
+            return obj;
+        }
         meter_link(id) {
             return "";
         }
@@ -4908,6 +4940,9 @@ var $;
     __decorate([
         $.$mol_mem_key
     ], $my_debug.prototype, "Object_row", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $my_debug.prototype, "Place_row", null);
     __decorate([
         $.$mol_mem
     ], $my_debug.prototype, "Meter_icon_water_hot", null);
@@ -4932,6 +4967,15 @@ var $;
     __decorate([
         $.$mol_mem_key
     ], $my_debug.prototype, "Object_row_content", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $my_debug.prototype, "Place_row_title", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $my_debug.prototype, "place_row_expanded", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $my_debug.prototype, "Place_row_content", null);
     __decorate([
         $.$mol_mem_key
     ], $my_debug.prototype, "meter_icon", null);
@@ -5765,7 +5809,6 @@ var $;
     (function ($$) {
         class $my_debug extends $.$my_debug {
             object(id) {
-                $.$mol_mem_persist();
                 return {
                     id: id,
                     title: $.$mol_stub_select_random(['Ivanhoe', 'Bewicke', 'Cliff', 'Kingsland', 'Hart'])
@@ -5776,8 +5819,14 @@ var $;
                     places: new Array($.$mol_stub_select_random([2, 3, 4, 6, 7, 8, 9])).fill(0).map(() => $.$mol_guid())
                 };
             }
+            place(id) {
+                return {
+                    id: id,
+                    title: Number.parseInt($.$mol_stub_code($.$mol_stub_select_random([1, 1, 1, 2])), 16).toString(),
+                    meters: new Array($.$mol_stub_select_random([1, 2, 3])).fill(0).map(() => $.$mol_guid())
+                };
+            }
             meter(id) {
-                $.$mol_mem_persist();
                 return {
                     id: id,
                     title: id,
@@ -5785,7 +5834,6 @@ var $;
                 };
             }
             object_rows() {
-                $.$mol_mem_persist();
                 return $.$mol_range2(index => `${index}`, () => 100).map(id => this.Object_row(id));
             }
             object_row_expanded(id, next) {
@@ -5795,7 +5843,13 @@ var $;
                 return this.object(id).title;
             }
             object_row_content(id) {
-                return this.object(id).places.map(id => this.Meter_row(id));
+                return this.object(id).places.map(id => this.Place_row(id));
+            }
+            place_row_title(id) {
+                return this.place(id).title;
+            }
+            place_row_content(id) {
+                return this.place(id).meters.map(id => this.Meter_row(id));
             }
             meter_link(id) {
                 return id;
@@ -5815,6 +5869,9 @@ var $;
         __decorate([
             $.$mol_mem_key
         ], $my_debug.prototype, "object", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $my_debug.prototype, "place", null);
         __decorate([
             $.$mol_mem_key
         ], $my_debug.prototype, "meter", null);

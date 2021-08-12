@@ -3,7 +3,7 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * title @ \Tree
+		 * title @ \Object tree
 		 * ```
 		 */
 		title() {
@@ -38,6 +38,27 @@ namespace $ {
 			] as readonly any[]
 			obj.expanded = (val?: any) => this.object_row_expanded(id, val)
 			obj.Content = () => this.Object_row_content(id)
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * Place_row!id $mol_expander
+		 * 	label / <= Place_row_title!id
+		 * 	expanded?val <=> place_row_expanded!id?val
+		 * 	Content <= Place_row_content!id
+		 * ```
+		 */
+		@ $mol_mem_key
+		Place_row(id: any) {
+			const obj = new this.$.$mol_expander()
+			
+			obj.label = () => [
+				this.Place_row_title(id)
+			] as readonly any[]
+			obj.expanded = (val?: any) => this.place_row_expanded(id, val)
+			obj.Content = () => this.Place_row_content(id)
 			
 			return obj
 		}
@@ -182,6 +203,66 @@ namespace $ {
 			const obj = new this.$.$mol_list()
 			
 			obj.rows = () => this.object_row_content(id)
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * place_row_title!id \Place
+		 * ```
+		 */
+		place_row_title(id: any) {
+			return "Place"
+		}
+		
+		/**
+		 * ```tree
+		 * Place_row_title!id $mol_paragraph sub / <= place_row_title!id
+		 * ```
+		 */
+		@ $mol_mem_key
+		Place_row_title(id: any) {
+			const obj = new this.$.$mol_paragraph()
+			
+			obj.sub = () => [
+				this.place_row_title(id)
+			] as readonly any[]
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * place_row_expanded!id?val false
+		 * ```
+		 */
+		@ $mol_mem_key
+		place_row_expanded(id: any, val?: any) {
+			if ( val !== undefined ) return val as never
+			return false
+		}
+		
+		/**
+		 * ```tree
+		 * place_row_content!id /
+		 * ```
+		 */
+		place_row_content(id: any) {
+			return [
+			] as readonly any[]
+		}
+		
+		/**
+		 * ```tree
+		 * Place_row_content!id $mol_list rows <= place_row_content!id
+		 * ```
+		 */
+		@ $mol_mem_key
+		Place_row_content(id: any) {
+			const obj = new this.$.$mol_list()
+			
+			obj.rows = () => this.place_row_content(id)
 			
 			return obj
 		}
