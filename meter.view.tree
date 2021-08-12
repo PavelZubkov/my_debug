@@ -1,0 +1,25 @@
+$my_meter $mol_page
+	title @ \Tree
+	body /
+		<= Tree_list $mol_list
+			rows <= object_rows /
+	Object_row!id $mol_expander
+		label / <= Object_row_title!id $mol_paragraph sub / <= object_row_title!id \Object
+		expanded?val <=> object_row_expanded!id?val false
+		Content <= Object_row_content!id $mol_list
+			rows <= object_row_content!id /
+	-
+	Place_row!id $mol_expander
+		label / <= Place_row_title!id $mol_paragraph sub / <= place_row_title!id \Place
+		expanded?val <=> place_row_expanded!id?val false
+		Content <= Place_row_content!id $mol_list
+			rows <= place_row_content!id /
+	-
+	Meter_icon_water_hot $mol_icon_water
+	Meter_icon_water_cold $mol_icon_water
+	Meter_icon_energy $mol_icon_flash
+	Meter_row!id $mol_link
+		arg * meter <= meter_link!id \
+		sub /
+			<= meter_icon!id $mol_view
+			<= meter_title!id \
