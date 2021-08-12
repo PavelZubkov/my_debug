@@ -40,7 +40,7 @@ namespace $.$$ {
 		@ $mol_mem
 		object_rows() {
 			// $mol_mem_persist()
-			return $mol_range2<string>( index => `${index}` , () => 100 ).map( id => this.Object_row( id ) )
+			return $mol_range2( index => index , () => 100 ).map( id => this.Object_row( id.toString() ) )
 		}
 
 		@ $mol_mem_key
