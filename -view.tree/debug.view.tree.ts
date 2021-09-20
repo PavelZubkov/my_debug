@@ -3,7 +3,19 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * title @ \Object tree
+		 * domain $my_debug_domain
+		 * ```
+		 */
+		@ $mol_mem
+		domain() {
+			const obj = new this.$.$my_debug_domain()
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * title @ \Sign_in
 		 * ```
 		 */
 		title() {
@@ -12,289 +24,201 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * body / <= Tree_list
+		 * body / <= Sign_in_form
 		 * ```
 		 */
 		body() {
 			return [
-				this.Tree_list()
+				this.Sign_in_form()
 			] as readonly any[]
 		}
 		
 		/**
 		 * ```tree
-		 * Object_row!id $mol_expander
-		 * 	label / <= Object_row_title!id
-		 * 	expanded?val <=> object_row_expanded!id?val
-		 * 	Content <= Object_row_content!id
+		 * email_label @ \E-mail
 		 * ```
 		 */
-		@ $mol_mem_key
-		Object_row(id: any) {
-			const obj = new this.$.$mol_expander()
-			
-			obj.label = () => [
-				this.Object_row_title(id)
-			] as readonly any[]
-			obj.expanded = (val?: any) => this.object_row_expanded(id, val)
-			obj.Content = () => this.Object_row_content(id)
-			
-			return obj
+		email_label() {
+			return this.$.$mol_locale.text( '$my_debug_email_label' )
 		}
 		
 		/**
 		 * ```tree
-		 * Place_row!id $mol_expander
-		 * 	label / <= Place_row_title!id
-		 * 	expanded?val <=> place_row_expanded!id?val
-		 * 	Content <= Place_row_content!id
+		 * email_bid \
 		 * ```
 		 */
-		@ $mol_mem_key
-		Place_row(id: any) {
-			const obj = new this.$.$mol_expander()
-			
-			obj.label = () => [
-				this.Place_row_title(id)
-			] as readonly any[]
-			obj.expanded = (val?: any) => this.place_row_expanded(id, val)
-			obj.Content = () => this.Place_row_content(id)
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * Meter_icon_water_hot $mol_icon_water
-		 * ```
-		 */
-		@ $mol_mem
-		Meter_icon_water_hot() {
-			const obj = new this.$.$mol_icon_water()
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * Meter_icon_water_cold $mol_icon_water
-		 * ```
-		 */
-		@ $mol_mem
-		Meter_icon_water_cold() {
-			const obj = new this.$.$mol_icon_water()
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * Meter_icon_energy $mol_icon_flash
-		 * ```
-		 */
-		@ $mol_mem
-		Meter_icon_energy() {
-			const obj = new this.$.$mol_icon_flash()
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * Meter_row!id $mol_link
-		 * 	arg * meter <= meter_link!id
-		 * 	sub /
-		 * 		<= meter_icon!id
-		 * 		<= meter_title!id
-		 * ```
-		 */
-		@ $mol_mem_key
-		Meter_row(id: any) {
-			const obj = new this.$.$mol_link()
-			
-			obj.arg = () => ({
-				meter: this.meter_link(id)
-			})
-			obj.sub = () => [
-				this.meter_icon(id),
-				this.meter_title(id)
-			] as readonly any[]
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * object_rows /
-		 * ```
-		 */
-		object_rows() {
-			return [
-			] as readonly any[]
-		}
-		
-		/**
-		 * ```tree
-		 * Tree_list $mol_list rows <= object_rows
-		 * ```
-		 */
-		@ $mol_mem
-		Tree_list() {
-			const obj = new this.$.$mol_list()
-			
-			obj.rows = () => this.object_rows()
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * object_row_title!id \Object
-		 * ```
-		 */
-		object_row_title(id: any) {
-			return "Object"
-		}
-		
-		/**
-		 * ```tree
-		 * Object_row_title!id $mol_paragraph sub / <= object_row_title!id
-		 * ```
-		 */
-		@ $mol_mem_key
-		Object_row_title(id: any) {
-			const obj = new this.$.$mol_paragraph()
-			
-			obj.sub = () => [
-				this.object_row_title(id)
-			] as readonly any[]
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * object_row_expanded!id?val false
-		 * ```
-		 */
-		@ $mol_mem_key
-		object_row_expanded(id: any, val?: any) {
-			if ( val !== undefined ) return val as never
-			return false
-		}
-		
-		/**
-		 * ```tree
-		 * object_row_content!id /
-		 * ```
-		 */
-		object_row_content(id: any) {
-			return [
-			] as readonly any[]
-		}
-		
-		/**
-		 * ```tree
-		 * Object_row_content!id $mol_list rows <= object_row_content!id
-		 * ```
-		 */
-		@ $mol_mem_key
-		Object_row_content(id: any) {
-			const obj = new this.$.$mol_list()
-			
-			obj.rows = () => this.object_row_content(id)
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * place_row_title!id \Place
-		 * ```
-		 */
-		place_row_title(id: any) {
-			return "Place"
-		}
-		
-		/**
-		 * ```tree
-		 * Place_row_title!id $mol_paragraph sub / <= place_row_title!id
-		 * ```
-		 */
-		@ $mol_mem_key
-		Place_row_title(id: any) {
-			const obj = new this.$.$mol_paragraph()
-			
-			obj.sub = () => [
-				this.place_row_title(id)
-			] as readonly any[]
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * place_row_expanded!id?val false
-		 * ```
-		 */
-		@ $mol_mem_key
-		place_row_expanded(id: any, val?: any) {
-			if ( val !== undefined ) return val as never
-			return false
-		}
-		
-		/**
-		 * ```tree
-		 * place_row_content!id /
-		 * ```
-		 */
-		place_row_content(id: any) {
-			return [
-			] as readonly any[]
-		}
-		
-		/**
-		 * ```tree
-		 * Place_row_content!id $mol_list rows <= place_row_content!id
-		 * ```
-		 */
-		@ $mol_mem_key
-		Place_row_content(id: any) {
-			const obj = new this.$.$mol_list()
-			
-			obj.rows = () => this.place_row_content(id)
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * meter_link!id \
-		 * ```
-		 */
-		meter_link(id: any) {
+		email_bid() {
 			return ""
 		}
 		
 		/**
 		 * ```tree
-		 * meter_icon!id $mol_view
+		 * email?val \
 		 * ```
 		 */
-		@ $mol_mem_key
-		meter_icon(id: any) {
-			const obj = new this.$.$mol_view()
+		@ $mol_mem
+		email(val?: any) {
+			if ( val !== undefined ) return val as never
+			return ""
+		}
+		
+		/**
+		 * ```tree
+		 * Email_control $mol_string value?val <=> email?val
+		 * ```
+		 */
+		@ $mol_mem
+		Email_control() {
+			const obj = new this.$.$mol_string()
+			
+			obj.value = (val?: any) => this.email(val)
 			
 			return obj
 		}
 		
 		/**
 		 * ```tree
-		 * meter_title!id \
+		 * Email_field $mol_form_field
+		 * 	name <= email_label
+		 * 	bid <= email_bid
+		 * 	control <= Email_control
 		 * ```
 		 */
-		meter_title(id: any) {
+		@ $mol_mem
+		Email_field() {
+			const obj = new this.$.$mol_form_field()
+			
+			obj.name = () => this.email_label()
+			obj.bid = () => this.email_bid()
+			obj.control = () => this.Email_control()
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * pass_label @ \Password
+		 * ```
+		 */
+		pass_label() {
+			return this.$.$mol_locale.text( '$my_debug_pass_label' )
+		}
+		
+		/**
+		 * ```tree
+		 * pass_bid \
+		 * ```
+		 */
+		pass_bid() {
 			return ""
+		}
+		
+		/**
+		 * ```tree
+		 * pass?val \
+		 * ```
+		 */
+		@ $mol_mem
+		pass(val?: any) {
+			if ( val !== undefined ) return val as never
+			return ""
+		}
+		
+		/**
+		 * ```tree
+		 * Pass_control $mol_string
+		 * 	value?val <=> pass?val
+		 * 	type \password
+		 * ```
+		 */
+		@ $mol_mem
+		Pass_control() {
+			const obj = new this.$.$mol_string()
+			
+			obj.value = (val?: any) => this.pass(val)
+			obj.type = () => "password"
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * pass_field $mol_form_field
+		 * 	name <= pass_label
+		 * 	bid <= pass_bid
+		 * 	control <= Pass_control
+		 * ```
+		 */
+		@ $mol_mem
+		pass_field() {
+			const obj = new this.$.$mol_form_field()
+			
+			obj.name = () => this.pass_label()
+			obj.bid = () => this.pass_bid()
+			obj.control = () => this.Pass_control()
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * sign_in_button_label @ \Sign in
+		 * ```
+		 */
+		sign_in_button_label() {
+			return this.$.$mol_locale.text( '$my_debug_sign_in_button_label' )
+		}
+		
+		/**
+		 * ```tree
+		 * event_submit?val null
+		 * ```
+		 */
+		@ $mol_mem
+		event_submit(val?: any) {
+			if ( val !== undefined ) return val as never
+			return null as any
+		}
+		
+		/**
+		 * ```tree
+		 * Sign_in_button $mol_button_major
+		 * 	title <= sign_in_button_label
+		 * 	event_click?val <=> event_submit?val
+		 * ```
+		 */
+		@ $mol_mem
+		Sign_in_button() {
+			const obj = new this.$.$mol_button_major()
+			
+			obj.title = () => this.sign_in_button_label()
+			obj.event_click = (val?: any) => this.event_submit(val)
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * Sign_in_form $mol_form
+		 * 	form_fields /
+		 * 		<= Email_field
+		 * 		<= pass_field
+		 * 	buttons / <= Sign_in_button
+		 * ```
+		 */
+		@ $mol_mem
+		Sign_in_form() {
+			const obj = new this.$.$mol_form()
+			
+			obj.form_fields = () => [
+				this.Email_field(),
+				this.pass_field()
+			] as readonly any[]
+			obj.buttons = () => [
+				this.Sign_in_button()
+			] as readonly any[]
+			
+			return obj
 		}
 	}
 	
