@@ -5913,18 +5913,25 @@ var $;
     (function ($$) {
         class $my_debug extends $.$my_debug {
             event_submit() {
-                console.log('auth');
-                const persons = this.domain().person_ids().map(id => this.domain().person(id));
-                const user = persons.find(person => person.email() === this.email());
-                if (!user)
-                    return console.log('User not found');
-                if (user.hash() !== this.pass())
-                    return console.log('Password wrong');
-                console.log('success');
+                return $.$mol_atom2_autorun(() => {
+                    console.log('auth');
+                    const persons = this.domain().person_ids().map(id => this.domain().person(id));
+                    const user = persons.find(person => person.email() === this.email());
+                    if (!user) {
+                        console.log('User not found');
+                        return false;
+                    }
+                    if (user.hash() !== this.pass()) {
+                        console.log('Password wrong');
+                        return false;
+                    }
+                    console.log('success');
+                    return user;
+                });
             }
         }
         __decorate([
-            $.$mol_fiber.method
+            $.$mol_mem
         ], $my_debug.prototype, "event_submit", null);
         $$.$my_debug = $my_debug;
     })($$ = $.$$ || ($.$$ = {}));
