@@ -1,21 +1,12 @@
-$my_debug $mol_page
+$my_debug $mol_list
 	domain $my_debug_domain
-	title @ \Sign_in
-	body /
-		<= Sign_in_form $mol_form
-			form_fields /
-				<= Email_field $mol_form_field
-					name <= email_label @ \E-mail
-					bid <= email_bid \
-					control <= Email_control $mol_string
-						value?val <=> email?val \
-				<= pass_field $mol_form_field
-					name <= pass_label @ \Password
-					bid <= pass_bid \
-					control <= Pass_control $mol_string
-						value?val <=> pass?val \
-						type \password
-			buttons /
-				<= Sign_in_button $mol_button_major
-					title <= sign_in_button_label @ \Sign in
-					event_click?val <=> event_submit?val null
+	rows /
+		<= Object_list $mol_list
+			rows <= object_rows /
+	Object!id $mol_expander
+		expanded?val <=> object_expanded!id?val false
+		label / <= Object_title!id $mol_view sub / <= object_title!id \
+		Content <= Object_content!id $mol_list
+			rows <= object_content!id /
+	Place!id $mol_view
+		sub / <= place_title!id \
