@@ -7,4 +7,4 @@ $my_debug $mol_page
 			rows <= rows /
 	Row!id $mol_row
 		sub /
-			<= age!id \
+			<= name!id \

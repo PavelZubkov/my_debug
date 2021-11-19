@@ -4308,8 +4308,8 @@ var $;
         class $my_debug extends $.$my_debug {
             person_repo() {
                 const obj = new $my_debug_person_repo({
-                    a: { id: 'a', name: 'hello', age: 1 },
-                    b: { id: 'b', name: 'world', age: 2 },
+                    a: { id: 'a', name: 'hello' },
+                    b: { id: 'b', name: 'world' },
                 });
                 return obj;
             }
