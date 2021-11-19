@@ -3,6 +3,17 @@ namespace $ {
 		
 		/**
 		 * ```tree
+		 * tools / <= Source
+		 * ```
+		 */
+		tools() {
+			return [
+				this.Source()
+			] as readonly any[]
+		}
+		
+		/**
+		 * ```tree
 		 * body / <= List
 		 * ```
 		 */
@@ -27,6 +38,20 @@ namespace $ {
 				this.name(id),
 				this.age(id)
 			] as readonly any[]
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * Source $mol_link_source uri \https://github.com/PavelZubkov/my_debug
+		 * ```
+		 */
+		@ $mol_mem
+		Source() {
+			const obj = new this.$.$mol_link_source()
+			
+			obj.uri = () => "https://github.com/PavelZubkov/my_debug"
 			
 			return obj
 		}
