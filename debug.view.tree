@@ -1,0 +1,8 @@
+$my_debug $mol_page
+	body /
+		<= List $mol_list
+			rows <= rows /
+	Row!id $mol_row
+		sub /
+			<= name!id \
+			<= age!id \
