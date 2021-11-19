@@ -1193,6 +1193,7 @@ declare namespace $.$$ {
         list(): $mol_store<Person>[];
         Person(id: string): $mol_store<Person>;
         add(item: Person): void;
+        add2(item: Person): void;
     }
     export class $my_debug extends $.$my_debug {
         person_repo(): $my_debug_person_repo;

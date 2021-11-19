@@ -4510,6 +4510,10 @@ var $;
                 dict[item.id] = item;
                 this.data(dict);
             }
+            add2(item) {
+                const dict = this.data();
+                this.data({ ...dict, [item.id]: item });
+            }
         }
         __decorate([
             $.$mol_mem
