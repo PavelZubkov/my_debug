@@ -24,6 +24,11 @@ namespace $.$$ {
 			dict[ item.id ] = item
 			this.data( dict )
 		}
+		
+		add2( item: Person ) {
+			const dict = this.data()
+			this.data( { ...dict, [item.id]: item } )
+		}
 	}
 
 	export class $my_debug extends $.$my_debug {
