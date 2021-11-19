@@ -1164,7 +1164,6 @@ declare namespace $ {
         Source(): $mol_link_source;
         rows(): readonly any[];
         List(): $$.$mol_list;
-        name(id: any): string;
         age(id: any): string;
     }
 }
@@ -1187,7 +1186,6 @@ declare namespace $.$$ {
     type Person = {
         id: string;
         name: string;
-        age: number;
     };
     export class $my_debug_person_repo extends $mol_store<Record<string, Person>> {
         list(): $mol_store<Person>[];
@@ -1198,7 +1196,6 @@ declare namespace $.$$ {
     export class $my_debug extends $.$my_debug {
         person_repo(): $my_debug_person_repo;
         name(id: string): string;
-        age(id: string): string;
         rows(): $mol_row[];
     }
     export {};
