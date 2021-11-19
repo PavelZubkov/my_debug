@@ -4301,12 +4301,12 @@ var $;
             }
             add(item) {
                 const dict = this.data();
-                dict[item.id] = item;
-                this.data(dict);
-            }
-            add2(item) {
-                const dict = this.data();
                 this.data({ ...dict, [item.id]: item });
+            }
+            delete(id) {
+                const dict = this.data();
+                delete dict[id];
+                this.data({ ...dict });
             }
         }
         __decorate([
