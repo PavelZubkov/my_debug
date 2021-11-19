@@ -4187,7 +4187,6 @@ var $;
         Row(id) {
             const obj = new this.$.$mol_row();
             obj.sub = () => [
-                this.name(id),
                 this.age(id)
             ];
             return obj;
@@ -4204,9 +4203,6 @@ var $;
             const obj = new this.$.$mol_list();
             obj.rows = () => this.rows();
             return obj;
-        }
-        name(id) {
-            return "";
         }
         age(id) {
             return "";
@@ -4320,9 +4316,6 @@ var $;
             name(id) {
                 return this.person_repo().Person(id).value('name');
             }
-            age(id) {
-                return this.person_repo().Person(id).value('age').toString();
-            }
             rows() {
                 return this.person_repo().list().map(person => this.Row(person.value('id')));
             }
@@ -4333,9 +4326,6 @@ var $;
         __decorate([
             $.$mol_mem_key
         ], $my_debug.prototype, "name", null);
-        __decorate([
-            $.$mol_mem_key
-        ], $my_debug.prototype, "age", null);
         $$.$my_debug = $my_debug;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

@@ -3,7 +3,6 @@ namespace $.$$ {
 	type Person = {
 		id: string
 		name: string
-		age: number
 	}
 	
 	export class $my_debug_person_repo extends $mol_store<
@@ -36,8 +35,8 @@ namespace $.$$ {
 		@ $mol_mem
 		person_repo() {
 			const obj = new $my_debug_person_repo( {
-				a: { id: 'a', name: 'hello', age: 1 } ,
-				b: { id: 'b', name: 'world', age: 2 } ,
+				a: { id: 'a', name: 'hello' } ,
+				b: { id: 'b', name: 'world' } ,
 			} )
 			return obj
 		}
@@ -45,11 +44,6 @@ namespace $.$$ {
 		@ $mol_mem_key
 		name( id: string ) {
 			return this.person_repo().Person( id ).value( 'name' )
-		}
-		
-		@ $mol_mem_key
-		age( id: string ) {
-			return this.person_repo().Person( id ).value( 'age' ).toString()
 		}
 		
 		rows() {

@@ -25,9 +25,7 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * Row!id $mol_row sub /
-		 * 	<= name!id
-		 * 	<= age!id
+		 * Row!id $mol_row sub / <= age!id
 		 * ```
 		 */
 		@ $mol_mem_key
@@ -35,7 +33,6 @@ namespace $ {
 			const obj = new this.$.$mol_row()
 			
 			obj.sub = () => [
-				this.name(id),
 				this.age(id)
 			] as readonly any[]
 			
@@ -78,15 +75,6 @@ namespace $ {
 			obj.rows = () => this.rows()
 			
 			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * name!id \
-		 * ```
-		 */
-		name(id: any) {
-			return ""
 		}
 		
 		/**
