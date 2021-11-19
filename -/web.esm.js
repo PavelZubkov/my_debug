@@ -4187,7 +4187,7 @@ var $;
         Row(id) {
             const obj = new this.$.$mol_row();
             obj.sub = () => [
-                this.age(id)
+                this.name(id)
             ];
             return obj;
         }
@@ -4204,7 +4204,7 @@ var $;
             obj.rows = () => this.rows();
             return obj;
         }
-        age(id) {
+        name(id) {
             return "";
         }
     }
@@ -4290,12 +4290,12 @@ var $;
             }
             add(item) {
                 const dict = this.data();
-                dict[item.id] = item;
-                this.data(dict);
-            }
-            add2(item) {
-                const dict = this.data();
                 this.data({ ...dict, [item.id]: item });
+            }
+            delete(id) {
+                const dict = this.data();
+                delete dict[id];
+                this.data({ ...dict });
             }
         }
         __decorate([

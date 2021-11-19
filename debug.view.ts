@@ -20,13 +20,13 @@ namespace $.$$ {
 		
 		add( item: Person ) {
 			const dict = this.data()
-			dict[ item.id ] = item
-			this.data( dict )
+			this.data( { ...dict, [item.id]: item } )
 		}
 		
-		add2( item: Person ) {
+		delete( id: string ) {
 			const dict = this.data()
-			this.data( { ...dict, [item.id]: item } )
+			delete dict[id]
+			this.data( { ... dict } )
 		}
 	}
 
