@@ -1181,7 +1181,7 @@ declare namespace $ {
         Source(): $mol_link_source;
         rows(): readonly any[];
         List(): $$.$mol_list;
-        age(id: any): string;
+        name(id: any): string;
     }
 }
 

@@ -4400,7 +4400,7 @@ var $;
         Row(id) {
             const obj = new this.$.$mol_row();
             obj.sub = () => [
-                this.age(id)
+                this.name(id)
             ];
             return obj;
         }
@@ -4417,7 +4417,7 @@ var $;
             obj.rows = () => this.rows();
             return obj;
         }
-        age(id) {
+        name(id) {
             return "";
         }
     }
