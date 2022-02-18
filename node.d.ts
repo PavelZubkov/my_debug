@@ -1286,6 +1286,14 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $my_debug extends $mol_page {
         tools(): readonly any[];
         body(): readonly any[];
@@ -1293,6 +1301,12 @@ declare namespace $ {
         Value(): $mol_view;
         submit(event?: any): any;
         Button(): $mol_button_major;
+        Row_no_binded(): $mol_row;
+        value2(): number;
+        Value2(): $mol_view;
+        submit2(event?: any): any;
+        Button2(): $mol_button_major;
+        Row_binded(): $mol_row;
     }
 }
 
@@ -1750,6 +1764,10 @@ declare namespace $.$$ {
         counter(next?: number): number;
         value(): number;
         submit(): void;
+        state2(): $mol_state_shared;
+        counter2(next?: number): number;
+        value2(): number;
+        submit2(): void;
     }
 }
 

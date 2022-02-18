@@ -117,15 +117,28 @@ $mol_button_major $mol_button_typed
 		^
 		mol_theme \$mol_theme_accent
 
+$mol_row $mol_view
+
 $my_debug $mol_page
 	tools /
 		<= Source $mol_link_source
 			uri \https://github.com/PavelZubkov/my_debug
 	body /
-		<= Value $mol_view
+		<= Row_no_binded $mol_row
 			sub /
-				\No binded
-				- <= value NaN
-		<= Button $mol_button_major
-			title \Submit
-			click?event <=> submit?event null
+				<= Value $mol_view
+					sub /
+						\Значение не выведено
+				<= Button $mol_button_major
+					title \Submit
+					click?event <=> submit?event null
+		
+		<= Row_binded $mol_row
+			sub /
+				<= Value2 $mol_view
+					sub /
+						\Значение выведено
+						<= value2 NaN
+				<= Button2 $mol_button_major
+					title \Submit
+					click?event <=> submit2?event null
