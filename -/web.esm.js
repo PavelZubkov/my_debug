@@ -3993,6 +3993,22 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_row extends $mol_view {
+    }
+    $.$mol_row = $mol_row;
+})($ || ($ = {}));
+//mol/row/-view.tree/row.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: .375rem;\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmargin: .375rem;\n\tmax-width: 100%;\n}\n");
+})($ || ($ = {}));
+//mol/row/-css/row.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $my_debug extends $mol_page {
         tools() {
             return [
@@ -4001,8 +4017,8 @@ var $;
         }
         body() {
             return [
-                this.Value(),
-                this.Button()
+                this.Row_no_binded(),
+                this.Row_binded()
             ];
         }
         Source() {
@@ -4013,7 +4029,7 @@ var $;
         Value() {
             const obj = new this.$.$mol_view();
             obj.sub = () => [
-                "No binded"
+                "Значение не выведено"
             ];
             return obj;
         }
@@ -4026,6 +4042,44 @@ var $;
             const obj = new this.$.$mol_button_major();
             obj.title = () => "Submit";
             obj.click = (event) => this.submit(event);
+            return obj;
+        }
+        Row_no_binded() {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => [
+                this.Value(),
+                this.Button()
+            ];
+            return obj;
+        }
+        value2() {
+            return NaN;
+        }
+        Value2() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                "Значение выведено",
+                this.value2()
+            ];
+            return obj;
+        }
+        submit2(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        Button2() {
+            const obj = new this.$.$mol_button_major();
+            obj.title = () => "Submit";
+            obj.click = (event) => this.submit2(event);
+            return obj;
+        }
+        Row_binded() {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => [
+                this.Value2(),
+                this.Button2()
+            ];
             return obj;
         }
     }
@@ -4041,6 +4095,21 @@ var $;
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "Button", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Row_no_binded", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Value2", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "submit2", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Button2", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Row_binded", null);
     $.$my_debug = $my_debug;
 })($ || ($ = {}));
 //my/debug/-view.tree/debug.view.tree.ts
@@ -5533,10 +5602,25 @@ var $;
             submit() {
                 this.counter(this.counter() + 1);
             }
+            state2() {
+                return new $mol_state_shared;
+            }
+            counter2(next) {
+                return Number(this.state2().doc('my_debug2').sub('counter').value(next) ?? 0);
+            }
+            value2() {
+                return this.counter2();
+            }
+            submit2() {
+                this.counter2(this.counter2() + 1);
+            }
         }
         __decorate([
             $mol_mem
         ], $my_debug.prototype, "state", null);
+        __decorate([
+            $mol_mem
+        ], $my_debug.prototype, "state2", null);
         $$.$my_debug = $my_debug;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
