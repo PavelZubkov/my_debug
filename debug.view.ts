@@ -15,27 +15,33 @@ namespace $.$$ {
 			return this.counter()
 		}
 
+		// @ $mol_action
 		override submit() {
-			this.counter( this.counter() + 1 )
+			this.counter( this.counter() + 1 );
+		}
+
+		auto() {
+			console.log(1)
+			this.state().sync()
 		}
 
 
-		@ $mol_mem
-		state2() {
-			return new $mol_state_shared
-		}
+		// @ $mol_mem
+		// state2() {
+		// 	return new $mol_state_shared
+		// }
 
-		counter2( next?: number ) {
-			return Number(this.state2().doc('my_debug2').sub('counter').value( next ) ?? 0)
-		}
+		// counter2( next?: number ) {
+		// 	return Number(this.state2().doc('my_debug2').sub('counter').value( next ) ?? 0)
+		// }
 
-		value2() {
-			return this.counter2()
-		}
+		// value2() {
+		// 	return this.counter2()
+		// }
 
-		override submit2() {
-			this.counter2( this.counter2() + 1 )
-		}
+		// override submit2() {
+		// 	this.counter2( this.counter2() + 1 )
+		// }
 	}
 
 }

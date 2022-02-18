@@ -12,7 +12,7 @@ $my_debug $mol_page
 					title \Submit
 					click?event <=> submit?event null
 		
-		<= Row_binded $mol_row
+		- <= Row_binded $mol_row
 			sub /
 				<= Value2 $mol_view
 					sub /
