@@ -11,7 +11,6 @@ namespace $.$$ {
 			return Number(this.state().doc('my_debug3').sub('counter').value( next ) ?? 0)
 		}
 
-
 		@ $mol_mem
 		state2() {
 			return new $mol_state_shared
