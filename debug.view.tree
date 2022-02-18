@@ -3,8 +3,10 @@ $my_debug $mol_page
 		<= Source $mol_link_source
 			uri \https://github.com/PavelZubkov/my_debug
 	body /
-		<= List $mol_list
-			rows <= rows /
-	Row!id $mol_row
-		sub /
-			<= name!id \
+		<= Value $mol_view
+			sub /
+				\No binded
+				- <= value NaN
+		<= Button $mol_button_major
+			title \Submit
+			click?event <=> submit?event null

@@ -14,29 +14,16 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * body / <= List
+		 * body /
+		 * 	<= Value
+		 * 	<= Button
 		 * ```
 		 */
 		body() {
 			return [
-				this.List()
+				this.Value(),
+				this.Button()
 			] as readonly any[]
-		}
-		
-		/**
-		 * ```tree
-		 * Row!id $mol_row sub / <= name!id
-		 * ```
-		 */
-		@ $mol_mem_key
-		Row(id: any) {
-			const obj = new this.$.$mol_row()
-			
-			obj.sub = () => [
-				this.name(id)
-			] as readonly any[]
-			
-			return obj
 		}
 		
 		/**
@@ -55,35 +42,46 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * rows /
-		 * ```
-		 */
-		rows() {
-			return [
-			] as readonly any[]
-		}
-		
-		/**
-		 * ```tree
-		 * List $mol_list rows <= rows
+		 * Value $mol_view sub / \No binded
 		 * ```
 		 */
 		@ $mol_mem
-		List() {
-			const obj = new this.$.$mol_list()
+		Value() {
+			const obj = new this.$.$mol_view()
 			
-			obj.rows = () => this.rows()
+			obj.sub = () => [
+				"No binded"
+			] as readonly any[]
 			
 			return obj
 		}
 		
 		/**
 		 * ```tree
-		 * name!id \
+		 * submit?event null
 		 * ```
 		 */
-		name(id: any) {
-			return ""
+		@ $mol_mem
+		submit(event?: any) {
+			if ( event !== undefined ) return event as never
+			return null as any
+		}
+		
+		/**
+		 * ```tree
+		 * Button $mol_button_major
+		 * 	title \Submit
+		 * 	click?event <=> submit?event
+		 * ```
+		 */
+		@ $mol_mem
+		Button() {
+			const obj = new this.$.$mol_button_major()
+			
+			obj.title = () => "Submit"
+			obj.click = (event?: any) => this.submit(event)
+			
+			return obj
 		}
 	}
 	
