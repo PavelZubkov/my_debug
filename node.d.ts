@@ -1298,9 +1298,10 @@ declare namespace $ {
         tools(): readonly any[];
         body(): readonly any[];
         Source(): $mol_link_source;
-        Value(): $mol_view;
         submit(event?: any): any;
         Button(): $mol_button_major;
+        value(): number;
+        Value(): $mol_view;
         Row_no_binded(): $mol_row;
     }
 }
@@ -1757,6 +1758,8 @@ declare namespace $.$$ {
     class $my_debug extends $.$my_debug {
         state(): $mol_state_shared;
         counter(next?: number): number;
+        state2(): $mol_state_shared;
+        counter2(next?: number): number;
         value(): number;
         submit(): void;
         auto(): void;
