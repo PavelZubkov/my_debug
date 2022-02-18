@@ -4003,8 +4003,7 @@ var $;
         }
         body() {
             return [
-                this.Row_no_binded(),
-                this.Row_binded()
+                this.Row_no_binded()
             ];
         }
         Source() {
@@ -4038,36 +4037,6 @@ var $;
             ];
             return obj;
         }
-        value2() {
-            return NaN;
-        }
-        Value2() {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
-                "Значение выведено",
-                this.value2()
-            ];
-            return obj;
-        }
-        submit2(event) {
-            if (event !== undefined)
-                return event;
-            return null;
-        }
-        Button2() {
-            const obj = new this.$.$mol_button_major();
-            obj.title = () => "Submit";
-            obj.click = (event) => this.submit2(event);
-            return obj;
-        }
-        Row_binded() {
-            const obj = new this.$.$mol_row();
-            obj.sub = () => [
-                this.Value2(),
-                this.Button2()
-            ];
-            return obj;
-        }
     }
     __decorate([
         $mol_mem
@@ -4084,18 +4053,6 @@ var $;
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "Row_no_binded", null);
-    __decorate([
-        $mol_mem
-    ], $my_debug.prototype, "Value2", null);
-    __decorate([
-        $mol_mem
-    ], $my_debug.prototype, "submit2", null);
-    __decorate([
-        $mol_mem
-    ], $my_debug.prototype, "Button2", null);
-    __decorate([
-        $mol_mem
-    ], $my_debug.prototype, "Row_binded", null);
     $.$my_debug = $my_debug;
 })($ || ($ = {}));
 //my/debug/-view.tree/debug.view.tree.ts
@@ -5588,25 +5545,14 @@ var $;
             submit() {
                 this.counter(this.counter() + 1);
             }
-            state2() {
-                return new $mol_state_shared;
-            }
-            counter2(next) {
-                return Number(this.state2().doc('my_debug2').sub('counter').value(next) ?? 0);
-            }
-            value2() {
-                return this.counter2();
-            }
-            submit2() {
-                this.counter2(this.counter2() + 1);
+            auto() {
+                console.log(1);
+                this.state().sync();
             }
         }
         __decorate([
             $mol_mem
         ], $my_debug.prototype, "state", null);
-        __decorate([
-            $mol_mem
-        ], $my_debug.prototype, "state2", null);
         $$.$my_debug = $my_debug;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
