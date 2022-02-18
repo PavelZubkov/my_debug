@@ -39,22 +39,6 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * Value $mol_view sub / \Значение не выведено
-		 * ```
-		 */
-		@ $mol_mem
-		Value() {
-			const obj = new this.$.$mol_view()
-			
-			obj.sub = () => [
-				"Значение не выведено"
-			] as readonly any[]
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
 		 * submit?event null
 		 * ```
 		 */
@@ -83,9 +67,34 @@ namespace $ {
 		
 		/**
 		 * ```tree
+		 * value NaN
+		 * ```
+		 */
+		value() {
+			return NaN
+		}
+		
+		/**
+		 * ```tree
+		 * Value $mol_view sub / <= value
+		 * ```
+		 */
+		@ $mol_mem
+		Value() {
+			const obj = new this.$.$mol_view()
+			
+			obj.sub = () => [
+				this.value()
+			] as readonly any[]
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
 		 * Row_no_binded $mol_row sub /
-		 * 	<= Value
 		 * 	<= Button
+		 * 	<= Value
 		 * ```
 		 */
 		@ $mol_mem
@@ -93,8 +102,8 @@ namespace $ {
 			const obj = new this.$.$mol_row()
 			
 			obj.sub = () => [
-				this.Value(),
-				this.Button()
+				this.Button(),
+				this.Value()
 			] as readonly any[]
 			
 			return obj

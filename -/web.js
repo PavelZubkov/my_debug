@@ -4025,13 +4025,6 @@ var $;
             obj.uri = () => "https://github.com/PavelZubkov/my_debug";
             return obj;
         }
-        Value() {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
-                "Значение не выведено"
-            ];
-            return obj;
-        }
         submit(event) {
             if (event !== undefined)
                 return event;
@@ -4043,11 +4036,21 @@ var $;
             obj.click = (event) => this.submit(event);
             return obj;
         }
+        value() {
+            return NaN;
+        }
+        Value() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.value()
+            ];
+            return obj;
+        }
         Row_no_binded() {
             const obj = new this.$.$mol_row();
             obj.sub = () => [
-                this.Value(),
-                this.Button()
+                this.Button(),
+                this.Value()
             ];
             return obj;
         }
@@ -4057,13 +4060,13 @@ var $;
     ], $my_debug.prototype, "Source", null);
     __decorate([
         $mol_mem
-    ], $my_debug.prototype, "Value", null);
-    __decorate([
-        $mol_mem
     ], $my_debug.prototype, "submit", null);
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "Button", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Value", null);
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "Row_no_binded", null);
@@ -5551,10 +5554,16 @@ var $;
                 return new $mol_state_shared;
             }
             counter(next) {
-                return Number(this.state().doc('my_debug').sub('counter').value(next) ?? 0);
+                return Number(this.state().doc('my_debug3').sub('counter').value(next) ?? 0);
+            }
+            state2() {
+                return new $mol_state_shared;
+            }
+            counter2(next) {
+                return Number(this.state2().doc('my_debug3').sub('counter').value(next) ?? 0);
             }
             value() {
-                return this.counter();
+                return this.counter2();
             }
             submit() {
                 this.counter(this.counter() + 1);
@@ -5567,6 +5576,9 @@ var $;
         __decorate([
             $mol_mem
         ], $my_debug.prototype, "state", null);
+        __decorate([
+            $mol_mem
+        ], $my_debug.prototype, "state2", null);
         $$.$my_debug = $my_debug;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

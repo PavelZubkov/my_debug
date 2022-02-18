@@ -8,11 +8,21 @@ namespace $.$$ {
 		}
 
 		counter( next?: number ) {
-			return Number(this.state().doc('my_debug').sub('counter').value( next ) ?? 0)
+			return Number(this.state().doc('my_debug3').sub('counter').value( next ) ?? 0)
+		}
+
+
+		@ $mol_mem
+		state2() {
+			return new $mol_state_shared
+		}
+
+		counter2( next?: number ) {
+			return Number(this.state2().doc('my_debug3').sub('counter').value( next ) ?? 0)
 		}
 
 		value() {
-			return this.counter()
+			return this.counter2()
 		}
 
 		// @ $mol_action
@@ -25,23 +35,6 @@ namespace $.$$ {
 			this.state().sync()
 		}
 
-
-		// @ $mol_mem
-		// state2() {
-		// 	return new $mol_state_shared
-		// }
-
-		// counter2( next?: number ) {
-		// 	return Number(this.state2().doc('my_debug2').sub('counter').value( next ) ?? 0)
-		// }
-
-		// value2() {
-		// 	return this.counter2()
-		// }
-
-		// override submit2() {
-		// 	this.counter2( this.counter2() + 1 )
-		// }
 	}
 
 }
