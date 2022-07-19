@@ -8,12 +8,10 @@ $my_debug $mol_page
 			title \Name
 			content /
 				<= Name_value $mol_view sub / <= name
-				\------
 				<= Name_control $mol_string value? <=> name?
 		<= Counter_block $mol_labeler
 			title \Counter
 			content /
 				<= Counter_value $mol_view sub / <= counter
-				\-----
 				<= Counter_control $mol_number value? <=> counter?
 

@@ -5711,7 +5711,6 @@ var $;
             obj.title = () => "Name";
             obj.content = () => [
                 this.Name_value(),
-                "------",
                 this.Name_control()
             ];
             return obj;
@@ -5733,7 +5732,6 @@ var $;
             obj.title = () => "Counter";
             obj.content = () => [
                 this.Counter_value(),
-                "-----",
                 this.Counter_control()
             ];
             return obj;

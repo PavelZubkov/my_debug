@@ -92,7 +92,6 @@ namespace $ {
 		 * 	title \Name
 		 * 	content /
 		 * 		<= Name_value
-		 * 		\------
 		 * 		<= Name_control
 		 * ```
 		 */
@@ -103,7 +102,6 @@ namespace $ {
 			obj.title = () => "Name"
 			obj.content = () => [
 				this.Name_value(),
-				"------",
 				this.Name_control()
 			] as readonly any[]
 			
@@ -146,7 +144,6 @@ namespace $ {
 		 * 	title \Counter
 		 * 	content /
 		 * 		<= Counter_value
-		 * 		\-----
 		 * 		<= Counter_control
 		 * ```
 		 */
@@ -157,7 +154,6 @@ namespace $ {
 			obj.title = () => "Counter"
 			obj.content = () => [
 				this.Counter_value(),
-				"-----",
 				this.Counter_control()
 			] as readonly any[]
 			
