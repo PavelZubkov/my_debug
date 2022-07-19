@@ -30,6 +30,7 @@ namespace $ {
 
 	setTimeout( ()=> {
 		console.log(0)
+		;($mol_dom_context as any)._origin = 'http://127.0.0.1:9080'
 		$my_debug_server.bootstrap()
 	} )
 

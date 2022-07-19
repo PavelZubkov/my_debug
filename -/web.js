@@ -4301,7 +4301,7 @@ var $;
             this.heartbeat();
             const socket = new $mol_dom_context.WebSocket(this.server());
             socket.onmessage = event => {
-                console.log('message', event.data);
+                console.log('message', event.data, event);
                 if (!event.data)
                     return;
                 const message = JSON.parse(event.data);
