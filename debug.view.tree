@@ -1,15 +1,19 @@
-$my_debug $mol_view
-	sub /
-		<= A $my_debug_a
-		<= B $my_debug_b
-			background \red
+$my_debug $mol_page
+	model $my_debug_model
+		name? => name?
+		counter? => counter?
+	title \$my_debug
+	body /
+		<= Name_block $mol_labeler
+			title \Name
+			content /
+				<= Name_value $mol_view sub / <= name
+				\------
+				<= Name_control $mol_string value? <=> name?
+		<= Counter_block $mol_labeler
+			title \Counter
+			content /
+				<= Counter_value $mol_view sub / <= counter
+				\-----
+				<= Counter_control $mol_number value? <=> counter?
 
-$my_debug_a $mol_view
-	style *
-		width 100
-		height 50
-		background <= background \green
-	event *
-		click? <=> click? null
-
-$my_debug_b $my_debug_a
