@@ -24,7 +24,6 @@ namespace $ {
 			const counter = this.model().counter()
 			const name = this.model().name()
 			console.log({ name, counter })
-			this.model().name( name + (counter % 2 === 0 ? '+' : '-') )
 		}
 
 	}

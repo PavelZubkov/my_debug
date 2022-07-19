@@ -44,6 +44,17 @@ namespace $ {
 		
 		/**
 		 * ```tree
+		 * tools / <= Source
+		 * ```
+		 */
+		tools() {
+			return [
+				this.Source()
+			] as readonly any[]
+		}
+		
+		/**
+		 * ```tree
 		 * body /
 		 * 	<= Name_block
 		 * 	<= Counter_block
@@ -54,6 +65,20 @@ namespace $ {
 				this.Name_block(),
 				this.Counter_block()
 			] as readonly any[]
+		}
+		
+		/**
+		 * ```tree
+		 * Source $mol_link_source uri \https://github.com/PavelZubkov/my_debug
+		 * ```
+		 */
+		@ $mol_mem
+		Source() {
+			const obj = new this.$.$mol_link_source()
+			
+			obj.uri = () => "https://github.com/PavelZubkov/my_debug"
+			
+			return obj
 		}
 		
 		/**

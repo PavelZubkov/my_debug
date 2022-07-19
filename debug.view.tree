@@ -3,6 +3,9 @@ $my_debug $mol_page
 		name? => name?
 		counter? => counter?
 	title \$my_debug
+	tools /
+		<= Source $mol_link_source
+			uri \https://github.com/PavelZubkov/my_debug
 	body /
 		<= Name_block $mol_labeler
 			title \Name
