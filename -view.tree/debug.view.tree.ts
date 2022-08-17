@@ -108,12 +108,11 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * options_enabled /
+		 * options_enabled \
 		 * ```
 		 */
 		options_enabled() {
-			return [
-			] as readonly any[]
+			return ""
 		}
 		
 		/**

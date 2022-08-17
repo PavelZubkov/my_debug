@@ -9,7 +9,7 @@ $my_debug $mol_page
 				<= Check_list $mol_check_list
 					option_checked*? <=> checked*? false
 					options <= options *
-				<= options_enabled /
+				<= options_enabled \
 	list /
 		1
 		2

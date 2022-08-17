@@ -9,7 +9,7 @@ namespace $.$$ {
 
 		@ $mol_mem
 		options_enabled() {
-			return 'enabled: ' + this.list().filter( option => this.checked(option) )
+			return 'enabled: ' + this.list().filter( option => this.checked(option) ).toString()
 		}
 
 	}

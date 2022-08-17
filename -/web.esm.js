@@ -4668,7 +4668,7 @@ var $;
             return obj;
         }
         options_enabled() {
-            return [];
+            return "";
         }
         List() {
             const obj = new this.$.$mol_list();
@@ -4705,7 +4705,7 @@ var $;
                 return Object.fromEntries(this.list().map(option => [option, option]));
             }
             options_enabled() {
-                return 'enabled: ' + this.list().filter(option => this.checked(option));
+                return 'enabled: ' + this.list().filter(option => this.checked(option)).toString();
             }
         }
         __decorate([
