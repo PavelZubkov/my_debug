@@ -117,9 +117,25 @@ namespace $ {
 		
 		/**
 		 * ```tree
+		 * Options $mol_view sub / <= options_enabled
+		 * ```
+		 */
+		@ $mol_mem
+		Options() {
+			const obj = new this.$.$mol_view()
+			
+			obj.sub = () => [
+				this.options_enabled()
+			] as readonly any[]
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
 		 * List $mol_list rows /
 		 * 	<= Check_list
-		 * 	<= options_enabled
+		 * 	<= Options
 		 * ```
 		 */
 		@ $mol_mem
@@ -128,7 +144,7 @@ namespace $ {
 			
 			obj.rows = () => [
 				this.Check_list(),
-				this.options_enabled()
+				this.Options()
 			] as readonly any[]
 			
 			return obj

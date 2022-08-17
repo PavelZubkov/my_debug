@@ -4670,11 +4670,18 @@ var $;
         options_enabled() {
             return "";
         }
+        Options() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.options_enabled()
+            ];
+            return obj;
+        }
         List() {
             const obj = new this.$.$mol_list();
             obj.rows = () => [
                 this.Check_list(),
-                this.options_enabled()
+                this.Options()
             ];
             return obj;
         }
@@ -4688,6 +4695,9 @@ var $;
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "Check_list", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Options", null);
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "List", null);
