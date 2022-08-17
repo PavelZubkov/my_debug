@@ -4715,7 +4715,7 @@ var $;
                 return Object.fromEntries(this.list().map(option => [option, option]));
             }
             options_enabled() {
-                return 'enabled: ' + this.list().filter(option => this.checked(option)).toString();
+                return 'enabled: ' + this.list().filter(option => this.checked(option));
             }
         }
         __decorate([
