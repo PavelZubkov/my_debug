@@ -1,20 +1,37 @@
-$my_debug $mol_page
-	title \$my_debug
-	tools /
-		<= Source $mol_link_source
-			uri \https://github.com/PavelZubkov/my_debug
-	body /
-		<= List $mol_list
-			rows /
-				<= Check_list $mol_check_list
-					option_checked*? <=> checked*? false
-					options <= options *
-				<= Options $mol_view sub / <= options_enabled \
-	list /
-		1
-		2
-		3
-		4
-		5
-		6
+$my_debug $mol_view
+	main_id \k349vv_j9qs5r
+	yard $hyoo_sync_client
+	event *
+		^
+		mousemove? <=> mouse_move? null
+	sub /
+		<= Page $mol_page
+			head /
+				<= Name $mol_string
+					hint \Type name plz
+					value? <=> my_name? \Peer
+			foot /
+				<= Online $hyoo_sync_online
+					yard <= yard
+				<= Source $mol_link_source
+					uri \https://github.com/PavelZubkov/my_debug/
+				<= Lights $mol_lights_toggle
+			body /
+				<= Peer_list $mol_list
+					rows <= peer_list /
+						<= Peer*0_0 $mol_view
+							sub / <= peer_name* \Peer name
+		<= Cursors $mol_view
+			sub <= cursors /
+				<= Cursor*0_0 $my_debug_cursor
+					x <= x* 0
+					y <= y* 0
+					name <= cursor_title* \Peer
 
+$my_debug_cursor $mol_view
+	x 0
+	y 0
+	name \
+	sub /
+		<= Icon $mol_icon_cursor_default
+		<= name
