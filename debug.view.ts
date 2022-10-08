@@ -6,27 +6,19 @@ namespace $.$$ {
 		state() {
 			return this.yard().land( this.main_id() as $mol_int62_string ).chief
 		}
+
 		@ $mol_mem_key
 		peer(id: $mol_int62_string) {
 			return this.yard().land( id ).chief
 		}
-		@ $mol_mem
-		peers() {
-			return this.state().sub( 'peers' , $hyoo_crowd_list )
+		@ $mol_mem_key
+		peer_name(id: $mol_int62_string, next?: string) {
+			return this.peer(id).sub( 'name' , $hyoo_crowd_reg ).str(next)
 		}
-
-
-		my_peer() {
-			return this.peer( this.yard().peer().id )
-		}
-		@ $mol_mem
-		my_name(next?: string) {
-			return this.my_peer().sub( 'name' , $hyoo_crowd_reg ).str(next)
-		}
-		@ $mol_mem
-		my_cursor(next?: { x: number, y: number }) {
+		@ $mol_mem_key
+		peer_cursor(id: $mol_int62_string, next?: { x: number, y: number }) {
 			const { clientHeight, clientWidth } = $mol_dom_context.document.documentElement
-			const node = this.my_peer().sub( 'cursor', $hyoo_crowd_reg )
+			const node = this.peer(id).sub( 'cursor', $hyoo_crowd_reg )
 
 			let json: string
 			if (next) {
@@ -41,19 +33,49 @@ namespace $.$$ {
 				return { x: obj.x * clientWidth, y: obj.y * clientHeight }
 			}
 		}
+
+
+		my_peer_id() {
+			return this.yard().peer().id
+		}
+		my_peer() {
+			return this.peer( this.my_peer_id() )
+		}
 		@ $mol_mem
 		my_peer_register() {
-			this.peers().add( this.yard().peer().id )
+			this.peers().add( this.my_peer_id() )
+		}
+		my_name(next?: string) {
+			return this.peer_name( this.my_peer_id(), next )
+		}
+		my_cursor(next?: { x: number, y: number }) {
+			return this.peer_cursor( this.my_peer_id(), next)
 		}
 
 
+		@ $mol_mem
+		peers() {
+			return this.state().sub( 'peers' , $hyoo_crowd_list )
+		}
 		@ $mol_mem
 		peer_list() {
 			return this.peers().list().map( id => this.Peer( id as $mol_int62_string ) )
 		}
-		@ $mol_mem_key
-		peer_name(id: $mol_int62_string) {
+
+
+		cursors() {
+			return this.peers().list()
+				.filter( id => !!this.peer_cursor(id as $mol_int62_string) )
+				.map( id => this.Cursor( id as $mol_int62_string ) )
+		}
+		cursor_title(id: $mol_int62_string) {
 			return this.peer(id).sub( 'name', $hyoo_crowd_reg ).str() || 'Anonim'
+		}
+		x(id: $mol_int62_string) {
+			return this.peer_cursor(id)!.x
+		}
+		y(id: $mol_int62_string) {
+			return this.peer_cursor(id)!.y
 		}
 
 
@@ -70,6 +92,7 @@ namespace $.$$ {
 
 	export class $my_debug_cursor extends $.$my_debug_cursor {
 
+		@ $mol_mem
 		position_set() {
 			const node = this.dom_node() as HTMLElement
 			node.style.left = this.x() + 'px'

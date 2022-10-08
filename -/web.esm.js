@@ -7704,18 +7704,12 @@ var $;
             peer(id) {
                 return this.yard().land(id).chief;
             }
-            peers() {
-                return this.state().sub('peers', $hyoo_crowd_list);
+            peer_name(id, next) {
+                return this.peer(id).sub('name', $hyoo_crowd_reg).str(next);
             }
-            my_peer() {
-                return this.peer(this.yard().peer().id);
-            }
-            my_name(next) {
-                return this.my_peer().sub('name', $hyoo_crowd_reg).str(next);
-            }
-            my_cursor(next) {
+            peer_cursor(id, next) {
                 const { clientHeight, clientWidth } = $mol_dom_context.document.documentElement;
-                const node = this.my_peer().sub('cursor', $hyoo_crowd_reg);
+                const node = this.peer(id).sub('cursor', $hyoo_crowd_reg);
                 let json;
                 if (next) {
                     json = node.str(JSON.stringify({ x: next.x / clientWidth, y: next.y / clientHeight }));
@@ -7729,14 +7723,40 @@ var $;
                     return { x: obj.x * clientWidth, y: obj.y * clientHeight };
                 }
             }
+            my_peer_id() {
+                return this.yard().peer().id;
+            }
+            my_peer() {
+                return this.peer(this.my_peer_id());
+            }
             my_peer_register() {
-                this.peers().add(this.yard().peer().id);
+                this.peers().add(this.my_peer_id());
+            }
+            my_name(next) {
+                return this.peer_name(this.my_peer_id(), next);
+            }
+            my_cursor(next) {
+                return this.peer_cursor(this.my_peer_id(), next);
+            }
+            peers() {
+                return this.state().sub('peers', $hyoo_crowd_list);
             }
             peer_list() {
                 return this.peers().list().map(id => this.Peer(id));
             }
-            peer_name(id) {
+            cursors() {
+                return this.peers().list()
+                    .filter(id => !!this.peer_cursor(id))
+                    .map(id => this.Cursor(id));
+            }
+            cursor_title(id) {
                 return this.peer(id).sub('name', $hyoo_crowd_reg).str() || 'Anonim';
+            }
+            x(id) {
+                return this.peer_cursor(id).x;
+            }
+            y(id) {
+                return this.peer_cursor(id).y;
             }
             mouse_move(e) {
                 const pos = { x: e.clientX, y: e.clientY };
@@ -7753,23 +7773,20 @@ var $;
             $mol_mem_key
         ], $my_debug.prototype, "peer", null);
         __decorate([
-            $mol_mem
-        ], $my_debug.prototype, "peers", null);
+            $mol_mem_key
+        ], $my_debug.prototype, "peer_name", null);
         __decorate([
-            $mol_mem
-        ], $my_debug.prototype, "my_name", null);
-        __decorate([
-            $mol_mem
-        ], $my_debug.prototype, "my_cursor", null);
+            $mol_mem_key
+        ], $my_debug.prototype, "peer_cursor", null);
         __decorate([
             $mol_mem
         ], $my_debug.prototype, "my_peer_register", null);
         __decorate([
             $mol_mem
-        ], $my_debug.prototype, "peer_list", null);
+        ], $my_debug.prototype, "peers", null);
         __decorate([
-            $mol_mem_key
-        ], $my_debug.prototype, "peer_name", null);
+            $mol_mem
+        ], $my_debug.prototype, "peer_list", null);
         $$.$my_debug = $my_debug;
         class $my_debug_cursor extends $.$my_debug_cursor {
             position_set() {
@@ -7781,6 +7798,9 @@ var $;
                 this.position_set();
             }
         }
+        __decorate([
+            $mol_mem
+        ], $my_debug_cursor.prototype, "position_set", null);
         $$.$my_debug_cursor = $my_debug_cursor;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
