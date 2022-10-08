@@ -1,5 +1,6 @@
 $my_debug $mol_view
-	main_id \k349vv_j9qs5r
+	- main_id \k349vv_j9qs5r
+	main_id \8f0l7q_zcolpy
 	yard $hyoo_sync_client
 	event *
 		^
