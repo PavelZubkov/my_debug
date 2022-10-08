@@ -7584,7 +7584,7 @@ var $;
 (function ($) {
     class $my_debug extends $mol_view {
         main_id() {
-            return "k349vv_j9qs5r";
+            return "8f0l7q_zcolpy";
         }
         yard() {
             const obj = new this.$.$hyoo_sync_client();
