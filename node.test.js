@@ -7584,7 +7584,7 @@ var $;
 (function ($) {
     class $my_debug extends $mol_view {
         main_id() {
-            return "8f0l7q_zcolpy";
+            return "k349vv_j9qs5r";
         }
         yard() {
             const obj = new this.$.$hyoo_sync_client();
@@ -7870,6 +7870,7 @@ var $;
     (function ($$) {
         $mol_style_define($my_debug_cursor, {
             position: 'absolute',
+            transition: 'all 0.5s ease-out 0s',
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -7941,9 +7942,11 @@ var $;
             y(id) {
                 return this.peer_cursor(id).y;
             }
+            mouse_pos = { x: 0, y: 0 };
+            mouse_time = Date.now();
             mouse_move(e) {
-                const pos = { x: e.clientX, y: e.clientY };
-                this.my_cursor(pos);
+                this.mouse_pos = { x: e.clientX, y: e.clientY };
+                this.my_cursor(this.mouse_pos);
             }
             auto() {
                 this.my_peer_register();

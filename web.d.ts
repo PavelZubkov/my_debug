@@ -1942,7 +1942,7 @@ declare namespace $ {
         static stream(input: RequestInfo, init?: RequestInit): ReadableStream<Uint8Array> | null;
         static text(input: RequestInfo, init?: RequestInit): string;
         static json(input: RequestInfo, init?: RequestInit): unknown;
-        static buffer(input: RequestInfo, init?: RequestInit): void;
+        static buffer(input: RequestInfo, init?: RequestInit): ArrayBuffer;
         static xml(input: RequestInfo, init?: RequestInit): Document;
         static xhtml(input: RequestInfo, init?: RequestInit): Document;
         static html(input: RequestInfo, init?: RequestInit): Document;
@@ -2342,6 +2342,11 @@ declare namespace $.$$ {
         cursor_title(id: $mol_int62_string): string;
         x(id: $mol_int62_string): number;
         y(id: $mol_int62_string): number;
+        mouse_pos: {
+            x: number;
+            y: number;
+        };
+        mouse_time: number;
         mouse_move(e: MouseEvent): void;
         auto(): void;
     }

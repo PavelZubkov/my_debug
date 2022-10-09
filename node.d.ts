@@ -2329,6 +2329,11 @@ declare namespace $.$$ {
         cursor_title(id: $mol_int62_string): string;
         x(id: $mol_int62_string): number;
         y(id: $mol_int62_string): number;
+        mouse_pos: {
+            x: number;
+            y: number;
+        };
+        mouse_time: number;
         mouse_move(e: MouseEvent): void;
         auto(): void;
     }
