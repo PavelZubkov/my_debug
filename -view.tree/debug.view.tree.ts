@@ -3,11 +3,11 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * main_id \8f0l7q_zcolpy
+		 * main_id \k349vv_j9qs5r
 		 * ```
 		 */
 		main_id() {
-			return "8f0l7q_zcolpy"
+			return "k349vv_j9qs5r"
 		}
 		
 		/**

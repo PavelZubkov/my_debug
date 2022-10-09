@@ -79,14 +79,25 @@ namespace $.$$ {
 		}
 
 
+		mouse_pos = { x: 0, y: 0 }
+		mouse_time = Date.now()
 		mouse_move(e: MouseEvent) {
-			const pos = { x: e.clientX, y: e.clientY }
-			this.my_cursor(pos)
+			// if (Date.now() - this.mouse_time > 250) {
+				this.mouse_pos= { x: e.clientX, y: e.clientY }
+				this.my_cursor(this.mouse_pos)
+				// this.mouse_time = Date.now()
+			// }
 		}
+		// @ $mol_mem
+		// mouse_sync() {
+		// 	$mol_state_time.now(500)
+		// 	this.my_cursor(this.mouse_pos)
+		// }
 
 
 		auto() {
 			this.my_peer_register()
+			// this.mouse_sync()
 		}
 	}
 
