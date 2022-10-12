@@ -6,13 +6,19 @@ namespace $.$$ {
 		Source_page: {
 			flex: {
 				shrink: 0,
-				basis: rem(30),
+				basis: rem(20),
 			},
 		},
 		Code_page: {
 			flex: {
 				shrink: 0,
 				basis: rem(30),
+			},
+		},
+		Style_page: {
+			flex: {
+				shrink: 0,
+				basis: rem(20),
 			},
 		},
 		Preview_page: {

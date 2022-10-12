@@ -36,21 +36,31 @@ namespace $.$$ {
 		}
 
 		@ $mol_mem
-		node(next?: Element) {
-			return next
+		preview() {
+			const View = this.$.$mol_js_eval( `${this.code()}; \n return $my_test` ) as typeof $mol_view
+			const view = View.Root(0)
+			const node = view.dom_node()
+			view.autorun()
+			return node
 		}
 
 		@ $mol_mem
-		bind() {
-			const View = this.$.$mol_js_eval( `${this.code()}; \n return $my_test` ) as typeof $mol_view
-			console.log(View)
-			const view = View.Root(0)
-			this.node( view.dom_node() )
-			view.autorun()
+		css_node() {
+			const id = '$my_test'
+			const doc = $mol_dom_context.document
+			let el = doc.getElementById(id)
+			if (!el) {
+				el = doc.createElement('style')
+				el.id = id
+				doc.head.appendChild( el )
+			}
+			return el
 		}
 
-		auto() {
-			this.bind()
+		@ $mol_mem
+		css(next?: string) {
+			if (next !== undefined) this.css_node().innerHTML = next
+			return next ?? super.css()
 		}
 
 	}

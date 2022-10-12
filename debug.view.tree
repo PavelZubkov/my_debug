@@ -14,7 +14,12 @@ $my_debug $mol_book2
 				<= Code $mol_text_code
 					render_visible_only false
 					text <= code \
+		<= Style_page $mol_page
+			title \Style
+			body /
+				<= Style $mol_textarea
+					value? <=> css? \
 		<= Preview_page $mol_page
 			title \Preview
 			body /
-				<= Preview $mol_view sub / <= node? null
+				<= Preview $mol_view sub / <= preview? null
