@@ -6408,6 +6408,7 @@ var $;
             return [
                 this.Source_page(),
                 this.Code_page(),
+                this.Style_page(),
                 this.Preview_page()
             ];
         }
@@ -6454,7 +6455,25 @@ var $;
             ];
             return obj;
         }
-        node(next) {
+        css(next) {
+            if (next !== undefined)
+                return next;
+            return "";
+        }
+        Style() {
+            const obj = new this.$.$mol_textarea();
+            obj.value = (next) => this.css(next);
+            return obj;
+        }
+        Style_page() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Style";
+            obj.body = () => [
+                this.Style()
+            ];
+            return obj;
+        }
+        preview(next) {
             if (next !== undefined)
                 return next;
             return null;
@@ -6462,7 +6481,7 @@ var $;
         Preview() {
             const obj = new this.$.$mol_view();
             obj.sub = () => [
-                this.node()
+                this.preview()
             ];
             return obj;
         }
@@ -6495,7 +6514,16 @@ var $;
     ], $my_debug.prototype, "Code_page", null);
     __decorate([
         $mol_mem
-    ], $my_debug.prototype, "node", null);
+    ], $my_debug.prototype, "css", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Style", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Style_page", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "preview", null);
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "Preview", null);
@@ -7826,13 +7854,19 @@ var $;
             Source_page: {
                 flex: {
                     shrink: 0,
-                    basis: rem(30),
+                    basis: rem(20),
                 },
             },
             Code_page: {
                 flex: {
                     shrink: 0,
                     basis: rem(30),
+                },
+            },
+            Style_page: {
+                flex: {
+                    shrink: 0,
+                    basis: rem(20),
                 },
             },
             Preview_page: {
@@ -7865,18 +7899,28 @@ var $;
                 const code = this.$.$mol_tree2_text_to_string_mapped_js(this.$.$mol_tree2_js_to_text(this.$.$mol_view_tree2_to_js(tree.list([tree]))));
                 return code;
             }
-            node(next) {
-                return next;
-            }
-            bind() {
+            preview() {
                 const View = this.$.$mol_js_eval(`${this.code()}; \n return $my_test`);
-                console.log(View);
                 const view = View.Root(0);
-                this.node(view.dom_node());
+                const node = view.dom_node();
                 view.autorun();
+                return node;
             }
-            auto() {
-                this.bind();
+            css_node() {
+                const id = '$my_test';
+                const doc = $mol_dom_context.document;
+                let el = doc.getElementById(id);
+                if (!el) {
+                    el = doc.createElement('style');
+                    el.id = id;
+                    doc.head.appendChild(el);
+                }
+                return el;
+            }
+            css(next) {
+                if (next !== undefined)
+                    this.css_node().innerHTML = next;
+                return next ?? super.css();
             }
         }
         __decorate([
@@ -7890,10 +7934,13 @@ var $;
         ], $my_debug.prototype, "code", null);
         __decorate([
             $mol_mem
-        ], $my_debug.prototype, "node", null);
+        ], $my_debug.prototype, "preview", null);
         __decorate([
             $mol_mem
-        ], $my_debug.prototype, "bind", null);
+        ], $my_debug.prototype, "css_node", null);
+        __decorate([
+            $mol_mem
+        ], $my_debug.prototype, "css", null);
         $$.$my_debug = $my_debug;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

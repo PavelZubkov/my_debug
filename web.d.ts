@@ -1963,7 +1963,10 @@ declare namespace $ {
         code(): string;
         Code(): $$.$mol_text_code;
         Code_page(): $mol_page;
-        node(next?: any): any;
+        css(next?: any): string;
+        Style(): $$.$mol_textarea;
+        Style_page(): $mol_page;
+        preview(next?: any): any;
         Preview(): $mol_view;
         Preview_page(): $mol_page;
     }
@@ -2197,9 +2200,9 @@ declare namespace $.$$ {
         source(next?: string): string;
         tree(): $mol_tree2;
         code(): string;
-        node(next?: Element): Element | undefined;
-        bind(): void;
-        auto(): void;
+        preview(): Element;
+        css_node(): HTMLElement;
+        css(next?: string): string;
     }
 }
 
