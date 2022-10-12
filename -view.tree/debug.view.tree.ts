@@ -1,115 +1,29 @@
 namespace $ {
-	export class $my_debug extends $mol_view {
+	export class $my_debug extends $mol_book2 {
 		
 		/**
 		 * ```tree
-		 * main_id \k349vv_j9qs5r
+		 * pages /
+		 * 	<= Source_page
+		 * 	<= Code_page
+		 * 	<= Preview_page
 		 * ```
 		 */
-		main_id() {
-			return "k349vv_j9qs5r"
-		}
-		
-		/**
-		 * ```tree
-		 * yard $hyoo_sync_client
-		 * ```
-		 */
-		@ $mol_mem
-		yard() {
-			const obj = new this.$.$hyoo_sync_client()
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * event *
-		 * 	^
-		 * 	mousemove? <=> mouse_move?
-		 * ```
-		 */
-		event() {
-			return {
-				...super.event(),
-				mousemove: (next?: any) => this.mouse_move(next)
-			}
-		}
-		
-		/**
-		 * ```tree
-		 * sub /
-		 * 	<= Page
-		 * 	<= Cursors
-		 * ```
-		 */
-		sub() {
+		pages() {
 			return [
-				this.Page(),
-				this.Cursors()
+				this.Source_page(),
+				this.Code_page(),
+				this.Preview_page()
 			] as readonly any[]
 		}
 		
 		/**
 		 * ```tree
-		 * mouse_move? null
+		 * Github $mol_link_source uri \https://github.com/PavelZubkov/my_debug/
 		 * ```
 		 */
 		@ $mol_mem
-		mouse_move(next?: any) {
-			if ( next !== undefined ) return next as never
-			return null as any
-		}
-		
-		/**
-		 * ```tree
-		 * my_name? \Peer
-		 * ```
-		 */
-		@ $mol_mem
-		my_name(next?: any) {
-			if ( next !== undefined ) return next as never
-			return "Peer"
-		}
-		
-		/**
-		 * ```tree
-		 * Name $mol_string
-		 * 	hint \Type name plz
-		 * 	value? <=> my_name?
-		 * ```
-		 */
-		@ $mol_mem
-		Name() {
-			const obj = new this.$.$mol_string()
-			
-			obj.hint = () => "Type name plz"
-			obj.value = (next?: any) => this.my_name(next)
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * Online $hyoo_sync_online yard <= yard
-		 * ```
-		 */
-		@ $mol_mem
-		Online() {
-			const obj = new this.$.$hyoo_sync_online()
-			
-			obj.yard = () => this.yard()
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * Source $mol_link_source uri \https://github.com/PavelZubkov/my_debug/
-		 * ```
-		 */
-		@ $mol_mem
-		Source() {
+		Github() {
 			const obj = new this.$.$mol_link_source()
 			
 			obj.uri = () => "https://github.com/PavelZubkov/my_debug/"
@@ -119,91 +33,47 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * Lights $mol_lights_toggle
+		 * source? \$my_test $mol_view
 		 * ```
 		 */
 		@ $mol_mem
-		Lights() {
-			const obj = new this.$.$mol_lights_toggle()
+		source(next?: any) {
+			if ( next !== undefined ) return next as never
+			return "$my_test $mol_view"
+		}
+		
+		/**
+		 * ```tree
+		 * Source $mol_textarea value? <=> source?
+		 * ```
+		 */
+		@ $mol_mem
+		Source() {
+			const obj = new this.$.$mol_textarea()
+			
+			obj.value = (next?: any) => this.source(next)
 			
 			return obj
 		}
 		
 		/**
 		 * ```tree
-		 * peer_name* \Peer name
-		 * ```
-		 */
-		peer_name(id: any) {
-			return "Peer name"
-		}
-		
-		/**
-		 * ```tree
-		 * Peer*0_0 $mol_view sub / <= peer_name*
-		 * ```
-		 */
-		@ $mol_mem_key
-		Peer(id: any) {
-			const obj = new this.$.$mol_view()
-			
-			obj.sub = () => [
-				this.peer_name(id)
-			] as readonly any[]
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * peer_list / <= Peer*0_0
-		 * ```
-		 */
-		peer_list() {
-			return [
-				this.Peer("0_0")
-			] as readonly any[]
-		}
-		
-		/**
-		 * ```tree
-		 * Peer_list $mol_list rows <= peer_list
+		 * Source_page $mol_page
+		 * 	tools / <= Github
+		 * 	title \Source
+		 * 	body / <= Source
 		 * ```
 		 */
 		@ $mol_mem
-		Peer_list() {
-			const obj = new this.$.$mol_list()
-			
-			obj.rows = () => this.peer_list()
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * Page $mol_page
-		 * 	head / <= Name
-		 * 	foot /
-		 * 		<= Online
-		 * 		<= Source
-		 * 		<= Lights
-		 * 	body / <= Peer_list
-		 * ```
-		 */
-		@ $mol_mem
-		Page() {
+		Source_page() {
 			const obj = new this.$.$mol_page()
 			
-			obj.head = () => [
-				this.Name()
+			obj.tools = () => [
+				this.Github()
 			] as readonly any[]
-			obj.foot = () => [
-				this.Online(),
-				this.Source(),
-				this.Lights()
-			] as readonly any[]
+			obj.title = () => "Source"
 			obj.body = () => [
-				this.Peer_list()
+				this.Source()
 			] as readonly any[]
 			
 			return obj
@@ -211,127 +81,91 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * x* 0
+		 * code \
 		 * ```
 		 */
-		x(id: any) {
-			return 0
-		}
-		
-		/**
-		 * ```tree
-		 * y* 0
-		 * ```
-		 */
-		y(id: any) {
-			return 0
-		}
-		
-		/**
-		 * ```tree
-		 * cursor_title* \Peer
-		 * ```
-		 */
-		cursor_title(id: any) {
-			return "Peer"
-		}
-		
-		/**
-		 * ```tree
-		 * Cursor*0_0 $my_debug_cursor
-		 * 	x <= x*
-		 * 	y <= y*
-		 * 	name <= cursor_title*
-		 * ```
-		 */
-		@ $mol_mem_key
-		Cursor(id: any) {
-			const obj = new this.$.$my_debug_cursor()
-			
-			obj.x = () => this.x(id)
-			obj.y = () => this.y(id)
-			obj.name = () => this.cursor_title(id)
-			
-			return obj
-		}
-		
-		/**
-		 * ```tree
-		 * cursors / <= Cursor*0_0
-		 * ```
-		 */
-		cursors() {
-			return [
-				this.Cursor("0_0")
-			] as readonly any[]
-		}
-		
-		/**
-		 * ```tree
-		 * Cursors $mol_view sub <= cursors
-		 * ```
-		 */
-		@ $mol_mem
-		Cursors() {
-			const obj = new this.$.$mol_view()
-			
-			obj.sub = () => this.cursors()
-			
-			return obj
-		}
-	}
-	
-	export class $my_debug_cursor extends $mol_view {
-		
-		/**
-		 * ```tree
-		 * x 0
-		 * ```
-		 */
-		x() {
-			return 0
-		}
-		
-		/**
-		 * ```tree
-		 * y 0
-		 * ```
-		 */
-		y() {
-			return 0
-		}
-		
-		/**
-		 * ```tree
-		 * name \
-		 * ```
-		 */
-		name() {
+		code() {
 			return ""
 		}
 		
 		/**
 		 * ```tree
-		 * sub /
-		 * 	<= Icon
-		 * 	<= name
+		 * Code $mol_text_code
+		 * 	render_visible_only false
+		 * 	text <= code
 		 * ```
 		 */
-		sub() {
-			return [
-				this.Icon(),
-				this.name()
-			] as readonly any[]
+		@ $mol_mem
+		Code() {
+			const obj = new this.$.$mol_text_code()
+			
+			obj.render_visible_only = () => false
+			obj.text = () => this.code()
+			
+			return obj
 		}
 		
 		/**
 		 * ```tree
-		 * Icon $mol_icon_cursor_default
+		 * Code_page $mol_page
+		 * 	title \Code
+		 * 	body / <= Code
 		 * ```
 		 */
 		@ $mol_mem
-		Icon() {
-			const obj = new this.$.$mol_icon_cursor_default()
+		Code_page() {
+			const obj = new this.$.$mol_page()
+			
+			obj.title = () => "Code"
+			obj.body = () => [
+				this.Code()
+			] as readonly any[]
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * node? null
+		 * ```
+		 */
+		@ $mol_mem
+		node(next?: any) {
+			if ( next !== undefined ) return next as never
+			return null as any
+		}
+		
+		/**
+		 * ```tree
+		 * Preview $mol_view sub / <= node?
+		 * ```
+		 */
+		@ $mol_mem
+		Preview() {
+			const obj = new this.$.$mol_view()
+			
+			obj.sub = () => [
+				this.node()
+			] as readonly any[]
+			
+			return obj
+		}
+		
+		/**
+		 * ```tree
+		 * Preview_page $mol_page
+		 * 	title \Preview
+		 * 	body / <= Preview
+		 * ```
+		 */
+		@ $mol_mem
+		Preview_page() {
+			const obj = new this.$.$mol_page()
+			
+			obj.title = () => "Preview"
+			obj.body = () => [
+				this.Preview()
+			] as readonly any[]
 			
 			return obj
 		}
