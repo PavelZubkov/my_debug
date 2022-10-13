@@ -12,7 +12,7 @@ namespace $.$$ {
 		Code_page: {
 			flex: {
 				shrink: 0,
-				basis: rem(30),
+				basis: rem(25),
 			},
 		},
 		Style_page: {
@@ -24,7 +24,7 @@ namespace $.$$ {
 		Preview_page: {
 			flex: {
 				shrink: 0,
-				basis: rem(30),
+				basis: rem(15),
 			},
 		},
 	} )

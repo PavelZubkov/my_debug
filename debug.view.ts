@@ -59,8 +59,19 @@ namespace $.$$ {
 
 		@ $mol_mem
 		css(next?: string) {
-			if (next !== undefined) this.css_node().innerHTML = next
-			return next ?? super.css()
+			const str = this.$.$mol_state_local.value('css', next) ?? super.css()
+			this.css_node().innerHTML = str
+			return str
+		}
+
+		prop_name(name: string) {
+			return name
+		}
+
+		props() {
+			const tree = this.tree()
+			const props = this.$.$mol_view_tree2_class_props( tree )
+			return tree.list( props ).kids.map( node => this.Prop( node.type ) )
 		}
 
 	}
