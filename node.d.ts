@@ -1991,12 +1991,25 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $my_debug extends $mol_book2 {
         pages(): readonly any[];
         Github(): $mol_link_source;
         source(next?: any): string;
         Source(): $$.$mol_textarea;
         Source_page(): $mol_page;
+        prop_name(id: any): string;
+        Prop(id: any): $mol_row;
+        props(): readonly any[];
+        Props(): $$.$mol_list;
+        Props_page(): $mol_page;
         code(): string;
         Code(): $$.$mol_text_code;
         Code_page(): $mol_page;
@@ -2240,6 +2253,8 @@ declare namespace $.$$ {
         preview(): Element;
         css_node(): HTMLElement;
         css(next?: string): string;
+        prop_name(name: string): string;
+        props(): $mol_row[];
     }
 }
 

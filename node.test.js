@@ -6403,10 +6403,27 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_row extends $mol_view {
+    }
+    $.$mol_row = $mol_row;
+})($ || ($ = {}));
+//mol/row/-view.tree/row.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: .375rem;\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmargin: .375rem;\n\tmax-width: 100%;\n}\n");
+})($ || ($ = {}));
+//mol/row/-css/row.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $my_debug extends $mol_book2 {
         pages() {
             return [
                 this.Source_page(),
+                this.Props_page(),
                 this.Code_page(),
                 this.Style_page(),
                 this.Preview_page()
@@ -6435,6 +6452,34 @@ var $;
             obj.title = () => "Source";
             obj.body = () => [
                 this.Source()
+            ];
+            return obj;
+        }
+        prop_name(id) {
+            return "";
+        }
+        Prop(id) {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => [
+                this.prop_name(id)
+            ];
+            return obj;
+        }
+        props() {
+            return [
+                this.Prop("name")
+            ];
+        }
+        Props() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => this.props();
+            return obj;
+        }
+        Props_page() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Properties";
+            obj.body = () => [
+                this.Props()
             ];
             return obj;
         }
@@ -6506,6 +6551,15 @@ var $;
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "Source_page", null);
+    __decorate([
+        $mol_mem_key
+    ], $my_debug.prototype, "Prop", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Props", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Props_page", null);
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "Code", null);
@@ -7860,7 +7914,7 @@ var $;
             Code_page: {
                 flex: {
                     shrink: 0,
-                    basis: rem(30),
+                    basis: rem(25),
                 },
             },
             Style_page: {
@@ -7872,7 +7926,7 @@ var $;
             Preview_page: {
                 flex: {
                     shrink: 0,
-                    basis: rem(30),
+                    basis: rem(15),
                 },
             },
         });
@@ -7918,9 +7972,17 @@ var $;
                 return el;
             }
             css(next) {
-                if (next !== undefined)
-                    this.css_node().innerHTML = next;
-                return next ?? super.css();
+                const str = this.$.$mol_state_local.value('css', next) ?? super.css();
+                this.css_node().innerHTML = str;
+                return str;
+            }
+            prop_name(name) {
+                return name;
+            }
+            props() {
+                const tree = this.tree();
+                const props = this.$.$mol_view_tree2_class_props(tree);
+                return tree.list(props).kids.map(node => this.Prop(node.type));
             }
         }
         __decorate([

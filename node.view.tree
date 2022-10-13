@@ -283,6 +283,8 @@ $mol_page $mol_view
 			dom_name \footer
 			sub <= foot /$mol_view
 
+$mol_row $mol_view
+
 $my_debug $mol_book2
 	pages /
 		<= Source_page $mol_page
@@ -293,6 +295,13 @@ $my_debug $mol_book2
 			body /
 				<= Source $mol_textarea
 					value? <=> source? \$my_test $mol_view
+		<= Props_page $mol_page
+			title \Properties
+			body /
+				<= Props $mol_list
+					rows <= props /
+						<= Prop*name $mol_row
+							sub / <= prop_name* \
 		<= Code_page $mol_page
 			title \Code
 			body /

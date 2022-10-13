@@ -143,6 +143,7 @@
     "$mol_string",
     "$mol_hotkey",
     "$mol_page",
+    "$mol_row",
     "$mol_view_tree2",
     "$mol_tree2",
     "$mol_span",
