@@ -5,7 +5,7 @@ $my_debug $mol_view
 		sleep \sleep
 	sub /
 		<= List $mol_list rows /
-			<= Skills $my_debug_select_list
+			<= Skills $my_debug_select
 				dictionary? <=> dict? *
 					music \music
 					films \films
