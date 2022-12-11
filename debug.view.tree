@@ -1,32 +1,12 @@
-$my_debug $mol_book2
-	pages /
-		<= Source_page $mol_page
-			tools /
-				<= Github $mol_link_source
-					uri \https://github.com/PavelZubkov/my_debug/
-			title \Source
-			body /
-				<= Source $mol_textarea
-					value? <=> source? \$my_test $mol_view
-		<= Props_page $mol_page
-			title \Properties
-			body /
-				<= Props $mol_list
-					rows <= props /
-						<= Prop*name $mol_row
-							sub / <= prop_name* \
-		<= Code_page $mol_page
-			title \Code
-			body /
-				<= Code $mol_text_code
-					render_visible_only false
-					text <= code \
-		<= Style_page $mol_page
-			title \Style
-			body /
-				<= Style $mol_textarea
-					value? <=> css? \
-		<= Preview_page $mol_page
-			title \Preview
-			body /
-				<= Preview $mol_view sub / <= preview? null
+$my_debug $mol_view
+	dict? *
+		music \music
+		films \films
+		sleep \sleep
+	sub /
+		<= List $mol_list rows /
+			<= Skills $my_debug_select_list
+				dictionary? <=> dict? *
+					music \music
+					films \films
+					sleep \sleep
