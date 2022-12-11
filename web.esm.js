@@ -5622,10 +5622,31 @@ var $;
             obj.dictionary = (next) => this.dict(next);
             return obj;
         }
+        skill_title(id) {
+            return "";
+        }
+        Skill(id) {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.skill_title(id)
+            ];
+            return obj;
+        }
+        skill_rows() {
+            return [
+                this.Skill("0")
+            ];
+        }
+        Skill_list() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => this.skill_rows();
+            return obj;
+        }
         List() {
             const obj = new this.$.$mol_list();
             obj.rows = () => [
-                this.Skills()
+                this.Skills(),
+                this.Skill_list()
             ];
             return obj;
         }
@@ -5636,6 +5657,12 @@ var $;
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "Skills", null);
+    __decorate([
+        $mol_mem_key
+    ], $my_debug.prototype, "Skill", null);
+    __decorate([
+        $mol_mem
+    ], $my_debug.prototype, "Skill_list", null);
     __decorate([
         $mol_mem
     ], $my_debug.prototype, "List", null);
@@ -5655,6 +5682,9 @@ var $;
                     grow: 0,
                 },
             },
+            Skill: {
+                padding: $mol_gap.text,
+            },
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -5666,14 +5696,13 @@ var $;
     var $$;
     (function ($$) {
         class $my_debug extends $.$my_debug {
-            dict1(next) {
-                console.log(next);
-                return next ?? {};
+            skill_rows() {
+                return Object.keys(this.dict()).map(key => this.Skill(key));
+            }
+            skill_title(key) {
+                return this.dict()[key];
             }
         }
-        __decorate([
-            $mol_mem
-        ], $my_debug.prototype, "dict1", null);
         $$.$my_debug = $my_debug;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

@@ -1869,6 +1869,10 @@ declare namespace $ {
         };
         sub(): readonly any[];
         Skills(): $$.$my_debug_select;
+        skill_title(id: any): string;
+        Skill(id: any): $mol_view;
+        skill_rows(): readonly any[];
+        Skill_list(): $$.$mol_list;
         List(): $$.$mol_list;
     }
 }
@@ -1878,7 +1882,8 @@ declare namespace $.$$ {
 
 declare namespace $.$$ {
     class $my_debug extends $.$my_debug {
-        dict1(next?: any): any;
+        skill_rows(): $mol_view[];
+        skill_title(key: string): any;
     }
 }
 
