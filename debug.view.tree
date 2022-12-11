@@ -10,3 +10,6 @@ $my_debug $mol_view
 					music \music
 					films \films
 					sleep \sleep
+			<= Skill_list $mol_list
+				rows <= skill_rows /
+					<= Skill* $mol_view sub / <= skill_title* \

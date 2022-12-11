@@ -10,6 +10,10 @@ namespace $.$$ {
 			},
 		},
 
+		Skill: {
+			padding: $mol_gap.text,
+		},
+
 	} )
 
 }
