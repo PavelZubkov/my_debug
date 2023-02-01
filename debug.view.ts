@@ -2,16 +2,16 @@ namespace $.$$ {
 
 	export class $my_debug extends $.$my_debug {
 
-
-		skill_rows() {
-			return Object.keys(this.dict()).map( key => this.Skill(key) )
+		click() {
+			this.log()
 		}
 
-		skill_title(key: string) {
-			return this.dict()[key]
+		@ $mol_mem
+		log() {
+			$mol_wire_solid()
+			console.log(this.value())
 		}
 
 	}
 
 }
-					

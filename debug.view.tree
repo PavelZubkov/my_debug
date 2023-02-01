@@ -1,15 +1,7 @@
-$my_debug $mol_view
-	dict? *
-		music \music
-		films \films
-		sleep \sleep
+$my_debug $mol_row
 	sub /
-		<= List $mol_list rows /
-			<= Skills $my_debug_select
-				dictionary? <=> dict? *
-					music \music
-					films \films
-					sleep \sleep
-			<= Skill_list $mol_list
-				rows <= skill_rows /
-					<= Skill*0 $mol_view sub / <= skill_title* \
+		<= Button $mol_button_major
+			click? <=> click? null
+			sub / \hi
+		<= Input $mol_string
+			value? <=> value? \0
