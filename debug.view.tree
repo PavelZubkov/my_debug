@@ -1,5 +1,7 @@
 $my_debug $mol_row
 	sub /
+		<= Github $mol_link_source
+			uri \https://github.com/PavelZubkov/my_debug/
 		<= Button $mol_button_major
 			click? <=> click? null
 			sub / \hi
