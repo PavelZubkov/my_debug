@@ -3198,7 +3198,7 @@ var $;
 (function ($) {
     class $my_debug extends $mol_list {
         items_count() {
-            return 100500;
+            return 100;
         }
         rows() {
             return [
