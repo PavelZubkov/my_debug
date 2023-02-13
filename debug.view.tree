@@ -1,6 +1,10 @@
-$my_debug $mol_list
-	items_count 100
-	rows /
-		<= Item*0 $mol_view
-			sub /
-				<= label* \{index}st element
+$my_debug $mol_page
+	items_count 100500
+	tools /
+		<= Github $mol_link_source
+			uri \https://github.com/PavelZubkov/my_debug/
+	body /
+		<= List $mol_list rows <= rows /
+			<= Item*0 $mol_view
+				sub /
+					<= label* \{index}st element
