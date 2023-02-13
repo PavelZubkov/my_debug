@@ -1,9 +1,6 @@
-$my_debug $mol_row
-	sub /
-		<= Github $mol_link_source
-			uri \https://github.com/PavelZubkov/my_debug/
-		<= Button $mol_button_major
-			click? <=> click? null
-			sub / \hi
-		<= Input $mol_string
-			value? <=> value? \0
+$my_debug $mol_list
+	items_count 100500
+	rows /
+		<= Item*0 $mol_view
+			sub /
+				<= label* \{index}st element
