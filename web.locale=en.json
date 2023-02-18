@@ -1,3 +1,9 @@
 {
-	"$mol_link_source_hint": "Source code"
+	"$my_debug_Break_title": "Start break",
+	"$my_debug_Continue_title": "Continue",
+	"$my_debug_Pause_title": "Pause",
+	"$my_debug_Pomodoro_title": "Start pomodoro",
+	"$my_debug_Refresh_rate_field_name": "Refresh rate(seconds)",
+	"$my_debug_Stop_title": "Stop",
+	"$my_debug_progress_title": "remains: {seconds} s"
 }

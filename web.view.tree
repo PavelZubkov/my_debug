@@ -8,46 +8,87 @@ $mol_scroll $mol_view
 		^
 		scroll?event <=> event_scroll?event null
 
-$mol_page $mol_view
-	dom_name \article
-	field *
-		^
-		tabIndex <= tabindex -1
-	sub /
-		<= Head $mol_view
-			minimal_height 64
-			dom_name \header
-			sub <= head /
-				<= Title $mol_view
-					dom_name \h1
-					sub <= title_content /
-						<= Logo null
-						<= title
-				<= Tools $mol_view
-					sub <= tools /$mol_view_content
-		<= Body $mol_scroll
-			scroll_top?val => body_scroll_top?val
-			sub <= body /$mol_view_content
-		<= Foot $mol_view
-			dom_name \footer
-			sub <= foot /$mol_view
+$mol_book2 $mol_scroll
+	sub <= pages /$mol_view
+	minimal_width 0
+	Placeholder $mol_view
+	Gap* $mol_view title \
 
-$mol_link $mol_view
-	uri \
-	dom_name \a
+$mol_speck $mol_view
 	attr *
 		^
-		href <= uri_toggle \
-		title <= hint_safe <= hint \
-		target <= target \_self
-		download <= file_name \
-		mol_link_current <= current false
-	sub /$mol_view_content
-		<= title
-	arg *
+		mol_theme <= theme \$mol_theme_accent
+	style *
+		^
+		minHeight \1em
+	sub /
+		<= value null
+
+$mol_button $mol_view
+	enabled true
+	click?event null
+	event_click?event null
 	event *
 		^
-		click?event <=> click?event <=> event_click?event null
+		click?event <=> event_activate?event null
+		dblclick?event <=> clicks?event null
+		keydown?event <=> event_key_press?event null 
+	attr *
+		^
+		disabled <= disabled false
+		role \button
+		tabindex <= tab_index 0
+		title <= hint_safe <= hint \
+	sub /$mol_view_content
+		<= title
+	Speck $mol_speck
+		value <= error \
+
+$mol_button_typed $mol_button
+	minimal_height 40
+	minimal_width 40
+
+$mol_button_minor $mol_button_typed
+
+$mol_hotkey $mol_plugin
+	event *
+		^
+		keydown?event <=> keydown?event null
+	key *
+	mod_ctrl false
+	mod_alt false
+	mod_shift false
+
+$mol_string $mol_view
+	dom_name \input
+	enabled true
+	minimal_height 40
+	autocomplete false
+	selection?val /number
+		0
+		0
+	auto /
+		<= selection_watcher null
+	field *
+		^
+		disabled <= disabled false
+		value <= value_changed?val <=> value?val \
+		placeholder <= hint_visible <= hint \
+		spellcheck <= spellcheck true
+		autocomplete <= autocomplete_native \
+		selectionEnd <= selection_end 0
+		selectionStart <= selection_start 0
+		inputMode <= keyboard \text
+	attr *
+		^
+		maxlength <= length_max +Infinity
+		type <= type?val \text
+	event *
+		^
+		input?event <=> event_change?event null
+	plugins /
+		<= Submit $mol_hotkey
+			key * enter?event <=> submit?event null
 
 $mol_svg $mol_view
 	dom_name \svg
@@ -78,12 +119,30 @@ $mol_icon $mol_svg_root
 		<= Path $mol_svg_path
 			geometry <= path \
 
-$mol_icon_github_circle $mol_icon path \M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z
+$mol_icon_minus $mol_icon path \M19,13H5V11H19V13Z
 
-$mol_link_source $mol_link
-	hint @ \Source code
+$mol_icon_plus $mol_icon path \M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z
+
+$mol_number $mol_view
+	precision_view <= precision 1
+	precision_change <= precision 1
+	value?val +NaN
 	sub /
-		<= Icon $mol_icon_github_circle
+		<= String $mol_string
+			- \ we don't want native number controls in mobile devices
+			- \ https://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-input-s-spin-box
+			type \tel
+			value?val <=> value_string?val \
+			hint <= hint \ 
+			enabled <= string_enabled <= enabled true
+		<= Dec $mol_button_minor
+			event_click?val <=> event_dec?val null
+			enabled <= dec_enabled <= enabled true
+			sub / <= dec_icon $mol_icon_minus
+		<= Inc $mol_button_minor
+			event_click?val <=> event_inc?val null
+			enabled <= inc_enabled <= enabled true
+			sub / <= inc_icon $mol_icon_plus
 
 $mol_list $mol_view
 	render_visible_only true
@@ -96,13 +155,107 @@ $mol_list $mol_view
 		0
 		0
 
-$my_debug $mol_page
-	items_count 100500
-	tools /
-		<= Github $mol_link_source
-			uri \https://github.com/PavelZubkov/my_debug/
-	body /
-		<= List $mol_list rows <= rows /
-			<= Item*0 $mol_view
-				sub /
-					<= label* \{index}st element
+$mol_labeler $mol_list
+	rows /
+		<= Label $mol_view
+			minimal_height 32
+			sub <= label /$mol_view_content
+				<= title
+		<= Content $mol_view
+			minimal_height 24
+			sub <= content /
+
+$mol_form_field $mol_labeler
+	bids /string
+	label /
+		<= name \
+		<= Bid $mol_view
+			sub / <= bid \
+	content / <= control null
+
+$mol_page $mol_view
+	dom_name \article
+	field *
+		^
+		tabIndex <= tabindex -1
+	sub /
+		<= Head $mol_view
+			minimal_height 64
+			dom_name \header
+			sub <= head /
+				<= Title $mol_view
+					dom_name \h1
+					sub <= title_content /
+						<= Logo null
+						<= title
+				<= Tools $mol_view
+					sub <= tools /$mol_view_content
+		<= Body $mol_scroll
+			scroll_top?val => body_scroll_top?val
+			sub <= body /$mol_view_content
+		<= Foot $mol_view
+			dom_name \footer
+			sub <= foot /$mol_view
+
+$mol_portion_indicator $mol_view
+	style *
+		^
+		width <= width_style \0
+
+$mol_portion $mol_view
+	portion 0
+	sub /
+		<= indicator $mol_portion_indicator
+			width_style <= indicator_width_style \0
+
+$my_debug $mol_book2
+	Timer $my_debug_timer
+	duration_minutes *
+		pomodoro 5
+		break 1
+	pages /
+		<= Pomodoro_page $mol_page
+			body /
+				<= Progress $my_debug_progress
+					title <= progress_title @ \remains: {seconds} s
+					portion <= progress 0
+				<= Pomodoro $mol_button_minor
+					title @ \Start pomodoro
+					click? <=> pomodoro_start? null
+				<= Break $mol_button_minor
+					title @ \Start break
+					click? <=> break_start? null
+				<= Stop $mol_button_minor
+					title @ \Stop
+					click? <=> stop? null
+				<= Pause $mol_button_minor
+					title @ \Pause
+					click? <=> pause? null
+				<= Continue $mol_button_minor
+					title @ \Continue
+					click? <=> continue? null
+				<= Refresh_rate_field $mol_form_field
+					name @ \Refresh rate(seconds)
+					control <= Refresh_rate $mol_number
+						value? <=> refresh_rate? 1
+						precision 0.1
+
+$my_debug_progress $mol_portion
+	sub /
+		<= indicator
+		<= Title $mol_view sub / <= title \
+
+$mol_row $mol_view
+
+$mol_form $mol_list
+	submit_allowed true
+	submit_blocked false
+	event *
+		^
+		keydown?event <=> keydown?event null
+	submit?event null
+	rows /
+		<= Body $mol_list
+			sub <= body <= form_fields /$mol_form_field
+		<= Foot $mol_row
+			sub <= foot <= buttons /$mol_view
