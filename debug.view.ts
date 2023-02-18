@@ -47,6 +47,7 @@ namespace $.$$ {
 		start(ms: number) {
 			this.timer_size(ms)
 			this.passed(0)
+			this.paused(false)
 		}
 
 		@ $mol_action
