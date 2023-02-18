@@ -6023,6 +6023,7 @@ var $;
             start(ms) {
                 this.timer_size(ms);
                 this.passed(0);
+                this.paused(false);
             }
             stop() {
                 this.timer_size(0);
