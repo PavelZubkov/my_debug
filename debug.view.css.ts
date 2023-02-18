@@ -1,20 +1,25 @@
 namespace $.$$ {
 
+	const { per, rem } = $mol_style_unit
+
 	$mol_style_define($my_debug, {
 
-		padding: $mol_gap.block,
-
-		Item: {
-			border: {
-				radius: $mol_gap.round,
+		Pomodoro_page: {
+			flex: {
+				basis: rem(20),
 			},
+		},
+
+		Progress: {
+			width: per(100),
+		},
+
+	})
+
+	$mol_style_define($my_debug_progress, {
+
+		Title: {
 			padding: $mol_gap.text,
-
-			':hover': {
-				background: {
-					color: $mol_theme.hover,
-				},
-			},
 		},
 
 	})
