@@ -5,6 +5,9 @@ $my_debug $mol_book2
 		break 1
 	pages /
 		<= Pomodoro_page $mol_page
+			tools /
+				<= Github $mol_link_source
+					uri \https://github.com/PavelZubkov/my_debug/
 			body /
 				<= Progress $my_debug_progress
 					title <= progress_title @ \remains: {seconds} s
