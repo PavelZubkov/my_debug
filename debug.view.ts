@@ -23,16 +23,19 @@ namespace $.$$ {
 		}
 
 		@ $mol_mem
+		tick(current_time?: number) {
+			const now = current_time ?? $mol_state_time.now(this.refresh_rate())
+			const delta = now - this.prev_time()
+
+			this.passed(this.passed() + delta)
+			this.prev_time(now)
+		}
+
+		@ $mol_mem
 		remains() {
 			if (!this.timer_size() || this.passed() >= this.timer_size()) return 0
 
-			if (!this.paused()) {
-				const now = $mol_state_time.now(this.refresh_rate())
-				const delta = now - this.prev_time()
-
-				this.passed(this.passed() + delta)
-				this.prev_time(now)
-			}
+			if (!this.paused()) this.tick()
 
 			const remains = this.timer_size() - this.passed()
 			return Math.max(0, remains)
@@ -40,6 +43,7 @@ namespace $.$$ {
 
 		@ $mol_mem
 		paused(next?: boolean) {
+			if (next === true) this.tick(Date.now())
 			return next ?? false
 		}
 
