@@ -1781,6 +1781,7 @@ declare namespace $.$$ {
         passed(ms?: number): number;
         prev_time(ms?: number): number;
         refresh_rate(ms?: number): number;
+        tick(current_time?: number): void;
         remains(): number;
         paused(next?: boolean): boolean;
         start(ms: number): void;

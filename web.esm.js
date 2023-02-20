@@ -1295,15 +1295,15 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    const cacthed = new WeakMap();
+    const catched = new WeakMap();
     function $mol_fail_catch(error) {
         if (typeof error !== 'object')
             return false;
         if (error instanceof Promise)
             $mol_fail_hidden(error);
-        if (cacthed.get(error))
+        if (catched.get(error))
             return false;
-        cacthed.set(error, true);
+        catched.set(error, true);
         return true;
     }
     $.$mol_fail_catch = $mol_fail_catch;
@@ -5659,19 +5659,23 @@ var $;
             refresh_rate(ms) {
                 return ms ?? 100;
             }
+            tick(current_time) {
+                const now = current_time ?? $mol_state_time.now(this.refresh_rate());
+                const delta = now - this.prev_time();
+                this.passed(this.passed() + delta);
+                this.prev_time(now);
+            }
             remains() {
                 if (!this.timer_size() || this.passed() >= this.timer_size())
                     return 0;
-                if (!this.paused()) {
-                    const now = $mol_state_time.now(this.refresh_rate());
-                    const delta = now - this.prev_time();
-                    this.passed(this.passed() + delta);
-                    this.prev_time(now);
-                }
+                if (!this.paused())
+                    this.tick();
                 const remains = this.timer_size() - this.passed();
                 return Math.max(0, remains);
             }
             paused(next) {
+                if (next === true)
+                    this.tick(Date.now());
                 return next ?? false;
             }
             start(ms) {
@@ -5696,6 +5700,9 @@ var $;
         __decorate([
             $mol_mem
         ], $my_debug_timer.prototype, "refresh_rate", null);
+        __decorate([
+            $mol_mem
+        ], $my_debug_timer.prototype, "tick", null);
         __decorate([
             $mol_mem
         ], $my_debug_timer.prototype, "remains", null);
