@@ -1,0 +1,11 @@
+$my_debug_range $mol_view
+	dom_name \input
+	attr *
+		type \range
+		min 100
+		max 1000
+		step 100
+	field *
+		value? <=> value? NaN
+	event *
+		input? <=> event_change? null

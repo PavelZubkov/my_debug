@@ -32,6 +32,11 @@ $my_debug $mol_book2
 					control <= Refresh_rate $mol_number
 						value? <=> refresh_rate? 1
 						precision 0.1
+				<= Range $my_debug_range
+					value? <=> range_value? 0
+				<= Range_vale $mol_form_field
+					name @ \Range value
+					control <= range_value
 
 $my_debug_progress $mol_portion
 	sub /
