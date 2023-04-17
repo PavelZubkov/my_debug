@@ -4,22 +4,10 @@ namespace $.$$ {
 
 	$mol_style_define($my_debug, {
 
-		Pomodoro_page: {
+		Posts: {
 			flex: {
-				basis: rem(20),
+				basis: rem(40),
 			},
-		},
-
-		Progress: {
-			width: per(100),
-		},
-
-	})
-
-	$mol_style_define($my_debug_progress, {
-
-		Title: {
-			padding: $mol_gap.text,
 		},
 
 	})

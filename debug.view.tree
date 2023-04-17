@@ -1,44 +1,11 @@
 $my_debug $mol_book2
-	Timer $my_debug_timer
-	duration_minutes *
-		pomodoro 5
-		break 1
 	pages /
-		<= Pomodoro_page $mol_page
+		<= Posts $mol_page
 			tools /
-				<= Github $mol_link_source
-					uri \https://github.com/PavelZubkov/my_debug/
+				<= Next $mol_button_major
+					title @ \Next post
+					click? <=> post_next? null
+			title @ \Posts
 			body /
-				<= Progress $my_debug_progress
-					title <= progress_title @ \remains: {seconds} s
-					portion <= progress 0
-				<= Pomodoro $mol_button_minor
-					title @ \Start pomodoro
-					click? <=> pomodoro_start? null
-				<= Break $mol_button_minor
-					title @ \Start break
-					click? <=> break_start? null
-				<= Stop $mol_button_minor
-					title @ \Stop
-					click? <=> stop? null
-				<= Pause $mol_button_minor
-					title @ \Pause
-					click? <=> pause? null
-				<= Continue $mol_button_minor
-					title @ \Continue
-					click? <=> continue? null
-				<= Refresh_rate_field $mol_form_field
-					name @ \Refresh rate(seconds)
-					control <= Refresh_rate $mol_number
-						value? <=> refresh_rate? 1
-						precision 0.1
-				<= Range $my_debug_range
-					value? <=> range_value? 0
-				<= Range_vale $mol_form_field
-					name @ \Range value
-					control <= range_value
-
-$my_debug_progress $mol_portion
-	sub /
-		<= indicator
-		<= Title $mol_view sub / <= title \
+				<= Status $mol_view sub / <= status \
+				<= Comments $mol_dump_list values <= post_comments /
