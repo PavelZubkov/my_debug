@@ -7160,7 +7160,7 @@ var $;
         $mol_style_define($my_debug, {
             Posts: {
                 flex: {
-                    basis: rem(40),
+                    basis: rem(60),
                 },
             },
         });
