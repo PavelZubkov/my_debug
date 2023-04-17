@@ -6,7 +6,7 @@ namespace $.$$ {
 
 		Posts: {
 			flex: {
-				basis: rem(40),
+				basis: rem(60),
 			},
 		},
 
