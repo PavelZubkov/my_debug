@@ -2,6 +2,8 @@ $my_debug $mol_book2
 	pages /
 		<= Posts $mol_page
 			tools /
+				<= Github $mol_link_source
+					uri \https://github.com/PavelZubkov/my_debug/
 				<= Next $mol_button_major
 					title @ \Next post
 					click? <=> post_next? null
