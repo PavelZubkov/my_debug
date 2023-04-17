@@ -6526,5 +6526,6 @@ var $;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //my/debug/debug.view.css.ts
-
-//# sourceMappingURL=web.js.map
+;
+export default $
+//# sourceMappingURL=web.mjs.map
