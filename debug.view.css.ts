@@ -4,9 +4,22 @@ namespace $.$$ {
 
 	$mol_style_define($my_debug, {
 
-		Posts: {
+		Page1: {
 			flex: {
-				basis: rem(60),
+				shrink: 0,
+				basis: rem(20),
+			},
+		},
+		Page2: {
+			flex: {
+				shrink: 0,
+				basis: rem(20),
+			},
+		},
+		Page3: {
+			flex: {
+				shrink: 0,
+				basis: rem(20),
 			},
 		},
 

@@ -1,13 +1,23 @@
 $my_debug $mol_book2
 	pages /
-		<= Posts $mol_page
+		<= Page1 $mol_page
 			tools /
 				<= Github $mol_link_source
 					uri \https://github.com/PavelZubkov/my_debug/
-				<= Next $mol_button_major
-					title @ \Next post
-					click? <=> post_next? null
-			title @ \Posts
+			title @ \1
 			body /
-				<= Status $mol_view sub / <= status \
-				<= Comments $mol_dump_list values <= post_comments /
+				<= Date1 $mol_date
+					align \bottom_right
+					value_moment?val <=> date1?val $mol_time_moment
+		<= Page2 $mol_page
+			title @ \2
+			body /
+				<= Date2 $mol_date
+					align \bottom_right
+					value_moment?val <=> date2?val $mol_time_moment
+		<= Page3 $mol_page
+			title @ \3
+			body /
+				<= Date3 $mol_date
+					align \bottom_right
+					value_moment?val <=> date3?val $mol_time_moment
