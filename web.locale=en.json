@@ -1,6 +1,10 @@
 {
+	"$mol_date_Clear_hint": "Clear",
+	"$mol_date_Today_hint": "Today",
+	"$mol_date_next_hint": "Next month",
+	"$mol_date_prev_hint": "Previous month",
 	"$mol_link_source_hint": "Source code",
-	"$mol_text_code_Copy_hint": "Copy whole code",
-	"$my_debug_Next_title": "Next post",
-	"$my_debug_Posts_title": "Posts"
+	"$my_debug_Page1_title": "1",
+	"$my_debug_Page2_title": "2",
+	"$my_debug_Page3_title": "3"
 }
